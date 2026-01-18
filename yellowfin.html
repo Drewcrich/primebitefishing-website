@@ -65,6 +65,15 @@
       color: #b0b0b0;
       background: #202020;
     }
+    .toc {
+      margin: 14px 0 22px 0;
+      padding: 14px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      color: #b0b0b0;
+    }
+    .toc strong { color: #e0e0e0; }
     .footer { border-top: 1px solid #333; padding: 20px 0; color: #666; text-align: center; }
   </style>
 </head>
@@ -96,6 +105,18 @@
         verbatim quotes (with page pointers where available), and a plain-English explanation of what is research-backed vs what is calibrated.
       </p>
 
+      <div class="toc">
+        <strong>On this page</strong>
+        <ul>
+          <li><a href="#math">The exact math (Yellowfin v1)</a></li>
+          <li><a href="#variables">Variables (research-backed vs calibrated)</a></li>
+          <li><a href="#calculation-methodology">Calculation methodology</a></li>
+          <li><a href="#environmental-variables">Environmental variables (verification)</a></li>
+          <li><a href="#example">Worked example</a></li>
+          <li><a href="#changelog">Model changelog</a></li>
+        </ul>
+      </div>
+
       <h2 id="math">The exact math (Yellowfin v1)</h2>
       <p>Yellowfin is an offshore <strong>all-day</strong> rating (no Major/Minor windows) built from “lifts” that map to a 1.0–5.0 rating.</p>
 
@@ -106,6 +127,25 @@ L_total_raw = L_phase + L_illum + L_ocean
 L_total     = clamp(L_total_raw, 0, L_REF)       // global clamp
 
 rating = 1 + 4 × (L_total / L_REF)               // where L_REF = 0.28</code></pre>
+
+      <h2 id="calculation-methodology">Calculation methodology (All‑day rating)</h2>
+      <p>
+        This section is the “how it’s calculated” reference for Yellowfin v1. Yellowfin combines a phase lift, an illumination lift,
+        and a capped ocean block (SST + chlorophyll‑a + gradients) before mapping into the 1.0–5.0 scale.
+      </p>
+      <pre><code>Step 1) Phase lift
+phaseBoostValue = moonPhaseBoostYellowfinMahi(f)  // shared Yellowfin/Mahi family
+L_phase = (phaseBoostValue × phaseWeight / 2.0) × 0.31
+
+Step 2) Illumination lift (separate mechanism from phase)
+L_illum = yellowfinLunarIlluminationLift(moonIllumFraction)
+
+Step 3) Ocean block (SST + CHL + gradients) with anti-double-counting cap
+L_ocean = clamp(L_sst + L_chl + L_gradient, -0.06, +0.10)
+
+Step 4) Total lift → rating
+L_total = clamp(L_phase + L_illum + L_ocean, 0, 0.28)
+Rating  = 1 + 4 × (L_total / 0.28)</code></pre>
 
       <h2 id="variables">Variables (what’s research-backed vs calibrated)</h2>
       <p>
@@ -134,6 +174,12 @@ rating = 1 + 4 × (L_total / L_REF)               // where L_REF = 0.28</code></
         <br><br>
         <em>(PDF p.5)</em>
       </blockquote>
+
+      <h2 id="environmental-variables">Environmental variables (verification)</h2>
+      <p>
+        This section focuses on the ocean data inputs (SST, chlorophyll‑a, and fronts/edges) and provides the primary open-access sources
+        and quotes that support using them as drivers. Exact thresholds and lift magnitudes are calibrated and disclosed in-app and in code.
+      </p>
 
       <h3>Sea surface temperature (SST) (L_sst)</h3>
       <p><strong>Research-backed:</strong> regional “optimal SST” bands exist in open-access habitat modeling.</p>
