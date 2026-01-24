@@ -78,6 +78,33 @@
       text-align: center;
       color: #b0b0b0;
     }
+    .print-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #4a9eff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+      transition: all 0.2s;
+      z-index: 1000;
+    }
+    .print-button:hover {
+      background: #3a8eef;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(74, 158, 255, 0.4);
+    }
+    @media print {
+      .header, .print-button { display: none; }
+      body { background: #fff; color: #000; }
+      .container { max-width: 100%; }
+      a { color: #000; text-decoration: underline; }
+      pre, blockquote { page-break-inside: avoid; }
+    }
   </style>
 </head>
 <body>
@@ -157,7 +184,7 @@ rating          = 1 + 4 × (L_total / 0.28)</code></pre>
         <p><strong>Pepperell et al. 2025 (open access):</strong> <a href="https://doi.org/10.1093/icesjms/fsaf182" target="_blank" rel="noopener noreferrer">DOI</a> • <a href="https://academic.oup.com/icesjms/article-pdf/82/10/fsaf182/64724324/fsaf182.pdf" target="_blank" rel="noopener noreferrer">PDF</a></p>
         <blockquote>“Moon phase had a non-linear relationship with higher CPUE during a half moon and approximately 30%–40% lower during new or full moons (Fig. 7e).”</blockquote>
 
-        <h3>Seasonality (GBR timing)</h3>
+        <h3 id="var-seasonality">Seasonality (GBR timing)</h3>
         <p><strong>Research-backed:</strong> a GBR spawning aggregation forms in Oct–Nov; the charter season is Sep–Dec with peak CPUE Oct–Nov.</p>
         <p><strong>Domeier &amp; Speare 2012 (open access):</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0031629" target="_blank" rel="noopener noreferrer">PLOS ONE full text</a></p>
         <p><strong>Calibrated:</strong> exact multipliers (GBR-timed, applied globally as a modeling choice): Sep/Dec ×1.05; Oct/Nov ×1.10; all other months ×1.00.</p>
@@ -165,7 +192,7 @@ rating          = 1 + 4 × (L_total / 0.28)</code></pre>
         <h3 id="environmental-variables">Environmental variables (verification)</h3>
         <p>This section documents <strong>what the papers say</strong> (verbatim quotes) and then shows how PrimeBite maps that into a stable rating (calibrated thresholds + caps).</p>
 
-        <h4>SST (SST-only ocean block)</h4>
+        <h4 id="var-sst">SST (SST-only ocean block)</h4>
         <p><strong>Setyadji &amp; Fahmi 2020 (open access):</strong> <a href="https://doi.org/10.15578/ifrj.26.1.2020.41-49" target="_blank" rel="noopener noreferrer">DOI</a> • <a href="http://ejournal-balitbang.kkp.go.id/index.php/ifrj/article/download/8158/6692" target="_blank" rel="noopener noreferrer">PDF</a></p>
         <blockquote>“In this study, high CPUE occurred between 29–31°C...”</blockquote>
         <blockquote>“... SST and SSH were statistically significant when incorporated into the models, but it allegedly wasn’t the main driver...”</blockquote>
@@ -210,6 +237,28 @@ Cold penalty can materially lower the rating and supports reaching 1.0/5 in clea
       <p><a href="index.html#privacy">Privacy Policy</a> | <a href="index.html#terms">Terms of Use</a></p>
     </div>
   </footer>
+
+  <button class="print-button" onclick="window.print()" aria-label="Print this page">
+    📄 Print / Save PDF
+  </button>
+
+  <script>
+    // Update TOC to include variable anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+      const variablesSection = document.querySelector('.toc a[href="#variables"]').parentElement;
+      if (variablesSection && variablesSection.tagName === 'LI') {
+        const subList = document.createElement('ul');
+        subList.style.marginLeft = '20px';
+        subList.style.fontSize = '0.9em';
+        subList.innerHTML = `
+          <li><a href="#var-moon-phase">Moon phase (quarter/half-moons)</a></li>
+          <li><a href="#var-seasonality">Seasonality (GBR timing)</a></li>
+          <li><a href="#var-sst">SST (ocean block)</a></li>
+        `;
+        variablesSection.appendChild(subList);
+      }
+    });
+  </script>
 </body>
 </html>
 
