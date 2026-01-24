@@ -378,7 +378,7 @@ p99 = 0.170993</code></pre>
   <script>
     // Update TOC to include variable anchor links
     document.addEventListener('DOMContentLoaded', function() {
-      const variablesSection = document.querySelector('a[href="#variables"]').parentElement;
+      const variablesSection = document.querySelector('.toc a[href="#variables"]').parentElement;
       if (variablesSection && variablesSection.tagName === 'LI') {
         const subList = document.createElement('ul');
         subList.style.marginLeft = '20px';
