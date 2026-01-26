@@ -1,43 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Muskie — PrimeBite Transparency</title>
-    <style>
-      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 0; color: #111; background: #fff; }
-      header { padding: 28px 18px; background: #0b1b14; color: #eafff4; }
-      header h1 { margin: 0 0 6px 0; font-size: 22px; }
-      header p { margin: 0; opacity: 0.9; line-height: 1.35; }
-      main { max-width: 980px; margin: 0 auto; padding: 22px 18px 48px; }
-      nav { margin: 14px 0 22px; padding: 12px 14px; border: 1px solid #e5e5e5; border-radius: 10px; background: #fafafa; }
-      nav a { margin-right: 12px; color: #0a5; text-decoration: none; font-weight: 600; }
-      h2 { margin-top: 26px; }
-      code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-      pre { background: #0b1020; color: #e6f0ff; padding: 12px; border-radius: 10px; overflow: auto; }
-      blockquote { margin: 14px 0; padding: 10px 12px; border-left: 4px solid #0a5; background: #f6fffb; }
-      .badge { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #e9fff3; color: #0a5; font-weight: 700; }
-      .note { background: #fff8e6; border: 1px solid #ffe2a8; padding: 10px 12px; border-radius: 10px; }
-      a { color: #0a5; }
-      footer { border-top: 1px solid #eee; padding-top: 16px; color: #555; }
-      ul { line-height: 1.5; }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Muskie — PrimeBite Transparency <span class="badge">v1</span></h1>
-      <p>Research-backed drivers + documented calibration choices for a consistent 1.0–5.0 rating scale.</p>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimeBite Fishing — Muskie Transparency</title>
+  <meta name="description" content="PrimeBite Fishing — Muskie full transparency: equations, variables, citations, exact quotes with page pointers, and calibration rationale.">
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="canonical" href="https://primetimefishing.netlify.app/muskie">
 
-    <main>
-      <nav>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #e0e0e0;
+      background: #1a1a1a;
+    }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    .header {
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #333;
+    }
+    .nav { display: flex; justify-content: center; gap: 1.25rem; padding: 1rem 0; flex-wrap: wrap; }
+    .nav a { color: #e0e0e0; text-decoration: none; font-weight: 600; }
+    .nav a:hover { color: #4a9eff; }
+    .section { padding: 44px 0; }
+    h1 { font-size: 2rem; line-height: 1.2; color: #fff; margin-bottom: 10px; }
+    h2 { font-size: 1.6rem; color: #fff; margin: 28px 0 12px; }
+    h3 { font-size: 1.2rem; color: #4a9eff; margin: 20px 0 10px; }
+    p { margin-bottom: 12px; color: #b0b0b0; }
+    ul { margin: 8px 0 16px 20px; color: #b0b0b0; }
+    li { margin-bottom: 6px; }
+    a { color: #4a9eff; }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    pre {
+      background: #121212;
+      border: 1px solid #333;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 10px 0 16px;
+      color: #e0e0e0;
+    }
+    blockquote {
+      background: #2a2a2a;
+      border-left: 4px solid #4a9eff;
+      padding: 12px;
+      margin: 10px 0 16px;
+      border-radius: 6px;
+      color: #e0e0e0;
+    }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      border: 1px solid #333;
+      border-radius: 999px;
+      margin-right: 8px;
+      color: #b0b0b0;
+      background: #202020;
+    }
+    .toc {
+      margin: 14px 0 22px 0;
+      padding: 14px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      color: #b0b0b0;
+    }
+    .toc strong { color: #e0e0e0; }
+    .footer { border-top: 1px solid #333; padding: 20px 0; color: #666; text-align: center; }
+    .print-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #4a9eff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+      transition: all 0.2s;
+      z-index: 1000;
+    }
+    .print-button:hover {
+      background: #3a8eef;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(74, 158, 255, 0.4);
+    }
+    @media print {
+      .header, .print-button { display: none; }
+      body { background: #fff; color: #000; }
+      .container { max-width: 100%; }
+      a { color: #000; text-decoration: underline; }
+      pre, blockquote { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#transparency">Transparency</a>
         <a href="#math">Math</a>
-        <a href="#percentiles">Percentile mapping</a>
         <a href="#variables">Variables</a>
+        <a href="#example">Worked example</a>
         <a href="#changelog">Changelog</a>
       </nav>
+    </div>
+  </header>
 
-      <h2 id="math">Math (how a Major-window rating is computed)</h2>
+  <main class="section">
+    <div class="container">
+      <span class="pill">PrimeBite Fishing</span>
+      <span class="pill">Muskie</span>
+      <span class="pill">Full Transparency</span>
+
+      <h1>Muskie — Full Transparency (v1)</h1>
+      <p><em>Last updated: 2026-01-26</em></p>
+
+      <p>
+        This page is designed to leave nothing out: the exact equations, every variable we use, the open-access URLs behind each driver,
+        verbatim quotes (with page pointers where available), and a plain-English explanation of what is research-backed vs what is calibrated.
+      </p>
+
+      <div class="toc">
+        <strong>On this page</strong>
+        <ul>
+          <li><a href="#math">The exact math (Muskie v1)</a></li>
+          <li><a href="#variables">Variables (research-backed vs calibrated)</a></li>
+          <li><a href="#calculation-methodology">Calculation methodology</a></li>
+          <li><a href="#verification">Key definitions & verification sources</a></li>
+          <li><a href="#example">Worked example</a></li>
+          <li><a href="#changelog">Model changelog</a></li>
+        </ul>
+      </div>
+
+      <h2 id="math">The exact math (Muskie v1)</h2>
       <p>
         Muskie (v1) is a freshwater <strong>Major-window</strong> rating: each Major solunar window (moon overhead / underfoot) gets a 1.0–5.0 score,
         and the day score is the duration-weighted average of the Major-window scores.
@@ -45,10 +153,10 @@
 
       <pre><code>// Lift-to-rating map (global)
 L_total_clamped = clamp(L_total, 0, L_REF)          // where L_REF = 0.28
-raw_rating = 1 + 4 × (L_total_clamped / L_REF)      // then rounded/clamped to [1.0, 5.0]
+raw_rating = 1 + 4 × (L_total_clamped / L_REF)      // then clamped to [1.0, 5.0]
 
 // Muskie window lift (per Major window; Muskie v1 uses Majors only)
-L_total_raw = L_base + L_phase + L_overlap + L_time + L_weather
+L_total_raw = L_base + L_phase + L_overlap + L_time + L_weather // (precip/pressure disabled; wind penalty only)
 
 // Seasonality multiplier (capped)
 L_total = clamp(L_total_raw × seasonMult, 0, L_REF) // seasonMult capped to 1.15
@@ -63,7 +171,9 @@ display_rating = percentileMap(L_total)</code></pre>
       </p>
 
       <h2 id="calculation-methodology">Calculation methodology</h2>
-      <p>This is the “how it’s calculated” reference for Muskie v1.</p>
+      <p>
+        This is the “how it’s calculated” reference for Muskie v1.
+      </p>
 
       <pre><code>Step 1) Base lift (Majors only)
 L_base = 0.10 for Major (moon overhead/underfoot)
@@ -87,7 +197,7 @@ L_time = (timeBias / 0.40) × 0.03                           // small by design
 
 Step 5) Weather adjustment
 // Muskie keeps a small wind-speed penalty (direction from Shaw 2021; magnitude calibrated)
-L_weather = windPenaltyCurve(windSpeed)
+L_weather = genericWindPenalty(windSpeed, windPenalty)      // windPenalty = 0.008 per 5 mph over 10
 
 Step 6) Apply seasonal multiplier
 L_total = clamp((L_base + L_phase + L_overlap + L_time + L_weather) × seasonMult, 0, L_REF)
@@ -98,13 +208,13 @@ raw_rating = 1 + 4 × (L_total / 0.28)
 Step 8) Raw lift → percentile-mapped display rating (commercial/UI)
 display_rating = piecewiseLinearMap(L_total; p01→1.0, p05→1.3, p50→2.5, p95→4.7, p99→5.0)</code></pre>
 
-      <h2 id="percentiles">Percentile mapping (why Muskie windows can reach 1.0 and 5.0)</h2>
+      <h3>Percentile mapping (why Muskie windows can reach 1.0 and 5.0)</h3>
       <p>
         The Muskie model drivers are research-backed (Shaw 2021 + supporting definitions). However, the research does not support
         a “nearly impossible” biological floor. Because this is a commercial app and users expect a true 1–5 scale,
         we apply a transparent <strong>percentile mapping</strong> for <strong>Major-window display ratings</strong>.
       </p>
-      <p class="note">
+      <p>
         <strong>Important:</strong> in PrimeBite Muskie, <strong>1.0 means “worst predicted conditions relative to the benchmark population,”</strong>
         not “you will catch nothing.”
       </p>
@@ -115,7 +225,6 @@ p05 = 0.100334
 p50 = 0.142223
 p95 = 0.206250
 p99 = 0.216082</code></pre>
-      <p><strong>Reproduce:</strong> run <code>npm run calibrate:muskie-percentiles</code>.</p>
 
       <h2 id="variables">Variables (what’s research-backed vs calibrated)</h2>
       <p>
@@ -124,64 +233,177 @@ p99 = 0.216082</code></pre>
       </p>
 
       <h3 id="var-moon-position">Moon position (Majors only) (L_base)</h3>
-      <p><strong>Research-backed:</strong> Muskie trip success increases during moon overhead/underfoot (Shaw 2021).</p>
+      <p><strong>Research-backed:</strong> Muskie trip success increases during moon overhead/underfoot.</p>
       <p><strong>Calibrated:</strong> mapping the existence of this effect into a lift constant (0.10 for Majors).</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257882" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PLOS ONE</a></p>
       <blockquote>
         “Twenty-three percent of observed trips were successful when the moon was either overhead or underfoot… relative to trips that did not encompass either of these lunar transition periods of which 16% were successful.”
-        <br><br><em>(PDF p.17)</em>
+        <br><br>
+        <em>(PDF p.17)</em>
       </blockquote>
 
       <h3 id="var-moon-phase">Moon phase (L_phase)</h3>
-      <p><strong>Research-backed:</strong> New and waning gibbous are highest for Muskie CPUE (ordering used).</p>
+      <p><strong>Research-backed:</strong> new and waning gibbous are highest for Muskie CPUE; quarter phases are lowest (ordering used).</p>
       <p><strong>Calibrated:</strong> exact curve shape and phaseWeight magnitude (3.5).</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
       <blockquote>
-        “Observed mean CPUE for successful trips was lowest during the first quarter phase… and highest for successful trips that occurred during the waning gibbous and new moon phases…”
-        <br><br><em>(PDF p.23)</em>
+        “Observed mean CPUE for successful trips was lowest during the first quarter phase… and highest for successful trips that occurred during the waning gibbous and new moon phases, 0.21 muskellunge/h and 0.20 muskellunge/h, respectively.”
+        <br><br>
+        <em>(PDF p.23)</em>
       </blockquote>
 
-      <h3 id="var-diel">Low-light / dusk dominance (L_time)</h3>
+      <h3 id="var-low-light">Low-light / crepuscular timing (L_time)</h3>
       <p><strong>Research-backed:</strong> Muskie CPUE is highest at dusk (dusk &gt;&gt; day &gt; dawn).</p>
-      <p><strong>Calibrated:</strong> lowLightBias magnitude and duskLowLightMultiplier (kept to approximate observed ratios).</p>
+      <p><strong>Calibrated:</strong> lowLightBias magnitude (0.35), duskLowLightMultiplier (1.5), and the exact dawn/dusk window used for scoring (see verification section for the window definition source).</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
       <blockquote>
-        “Observed mean muskellunge CPUE for successful dawn trips was 0.15… successful day trips 0.19… and successful dusk trips 0.30…”
-        <br><br><em>(PDF p.21)</em>
+        “Observed mean muskellunge CPUE for successful dawn trips was 0.15 muskellunge/h (95% CI 0.13–0.18), successful day trips 0.19 muskellunge/h (95% CI 0.18–0.20), and successful dusk trips 0.30 muskellunge/h (95% CI 0.20–0.49; Fig 10B).”
+        <br><br>
+        <em>(PDF p.21)</em>
       </blockquote>
-      <p><strong>Window definition (open access):</strong> dawn/dusk = ±30 minutes around sunrise/sunset (Vasquez 2024).</p>
-      <p><a href="https://minds.wisconsin.edu/handle/1793/85172" target="_blank" rel="noopener noreferrer">Vasquez 2024 — UWSP thesis (open access)</a></p>
 
-      <h3 id="var-overlap">Civil twilight overlap (L_overlap)</h3>
-      <p><strong>Research-backed:</strong> low light helps; we define overlap using the standard civil-twilight definition.</p>
-      <p><strong>Calibrated:</strong> mapping from overlap_fraction → lift and ceiling (0.07).</p>
-      <p><strong>Definition (open access):</strong> <a href="https://www.weather.gov/fsd/twilight" target="_blank" rel="noopener noreferrer">NWS/NOAA — Twilight definitions</a></p>
-
-      <h3 id="var-wind">Wind speed (L_weather)</h3>
-      <p><strong>Research-backed:</strong> wind speed negatively affects Muskie CPUE (direction-of-effect).</p>
-      <p><strong>Calibrated:</strong> exact penalty curve magnitude.</p>
+      <h3 id="var-cloud-cover">Cloud cover (proxy for solar radiation) (not implemented for Muskie v1)</h3>
+      <p><strong>Research-backed:</strong> mean daily solar radiation had a negative effect on Muskie trip success.</p>
+      <p><strong>Calibrated/product choice:</strong> Muskie v1 does not apply a cloud-cover proxy; the effect was weaker and only significant for trip success (not CPUE).</p>
+      <p><strong>Implementation note:</strong> PrimeBite uses Open-Meteo cloud cover (%) as a proxy for light intensity for Walleye, but <strong>does not use it for Muskie v1</strong>.</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
       <blockquote>
-        “Predicted mean CPUE… ranged from 0.15 muskellunge/h … and declined to 0.09… at the maximum wind speeds observed (≥ 9 m/s).”
-        <br><br><em>(PDF p.23)</em>
+        “However, similar to walleye, solar radiation had a negative influence on muskellunge trip success … The predicted odds of a successful trip decreased from a high of 0.17 … at solar radiation &lt; 25 W/m² to a predicted odds of success of 0.11 … at solar radiation &gt; 450 W/m².”
+        <br><br>
+        <em>(PDF p.21)</em>
       </blockquote>
 
-      <h3 id="var-seasonality">Seasonality (seasonMult)</h3>
-      <p><strong>Research-backed:</strong> seasonal environmental factors contribute; spring vulnerability noted.</p>
-      <p><strong>Calibrated:</strong> month-by-month multipliers and the cap (1.15).</p>
-      <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257882" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PLOS ONE</a></p>
+      <h3 id="var-overlap">Dawn/dusk overlap with bite windows (L_overlap)</h3>
+      <p><strong>Research-backed:</strong> low-light periods improve success (Shaw 2021), so overlap with dawn/dusk is meaningful.</p>
+      <p><strong>Calibrated:</strong> how overlap maps into points (ceiling 0.07) and the overlap mapping ceiling in the profile.</p>
+      <p><strong>Verification source:</strong> civil twilight definition (NOAA/NWS) is used so “dawn/dusk overlap” is a standard astronomical window.</p>
 
-      <h2 id="changelog">Changelog</h2>
+      <h3 id="var-seasonality">Seasonality multiplier (seasonMult)</h3>
+      <p><strong>Research-backed:</strong> seasonal environmental factors contribute; spring vulnerability is explicitly noted for Muskie.</p>
+      <p><strong>Calibrated:</strong> monthly multipliers and the global cap (1.15) used to keep seasonality meaningful but not dominant.</p>
+      <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
+      <blockquote>
+        “Multiple environmental factors related to seasonal changes in environmental conditions (i.e., air temperature, solar radiation, and diel period) contributed to walleye and muskellunge trip success and catch rates.”
+        <br><br>
+        “Hunger induced by spawning metabolic demands and decreased perception from minimal ice fishing pressure may contribute to increased angling vulnerability during the spring months in Escanaba Lake.”
+        <br><br>
+        <em>(PDF p.26)</em>
+      </blockquote>
+      <p><strong>Supporting sources (open PDFs):</strong></p>
       <ul>
-        <li><strong>2026-01-26</strong>: Commercial/UI: added <strong>percentile mapping</strong> for Muskie Major-window display ratings so 1.0 and 5.0 are equally rare (raw-model math remains visible).</li>
+        <li><a href="https://www.researchgate.net/profile/Michael-Hansen-44/publication/233201382_Temporal_Profiles_of_Walleye_Angling_Effort_Harvest_Rate_and_Harvest_in_Northern_Wisconsin_Lakes/links/546389d30cf2cb7e9da989d6/Temporal-Profiles-of-Walleye-Angling-Effort-Harvest-Rate-and-Harvest-in-Northern-Wisconsin-Lakes.pdf" target="_blank" rel="noopener noreferrer">Deroba et al. 2007 — Northern Wisconsin seasonality</a></li>
+        <li><a href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1063&amp;context=ncfwrustaff" target="_blank" rel="noopener noreferrer">Pope &amp; Willis 1996 — seasonal CPUE patterns</a></li>
       </ul>
 
-      <footer>
-        <p>
-          Canonical verification log: <code>docs/MUSKIE_VARIABLES_FACTCHECK.md</code>. Calculation walkthrough: <code>docs/MUSKIE_CALCULATIONS.md</code>.
-        </p>
-      </footer>
-    </main>
-  </body>
-</html>
+      <h3 id="var-weather">Weather (wind/precip/pressure)</h3>
+      <p><strong>Research-backed:</strong> wind speed negatively affects Muskie CPUE; precip/pressure were not highly weighted.</p>
+      <p><strong>Calibrated:</strong> exact wind penalty curve magnitude; precip/pressure disabled for Muskie v1.</p>
+      <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
+      <blockquote>
+        “Predicted mean CPUE for successful trips ranged from 0.15 muskellunge/h … and declined to 0.09 … at the maximum wind speeds observed (≥ 9 m/s).”
+        <br><br>
+        <em>(PDF p.23)</em>
+      </blockquote>
+      <blockquote>
+        “Additionally, large changes in barometric pressure and precipitation are associated with frontal weather and yet these environmental factors were not highly weighted in any analysis.”
+        <br><br>
+        <em>(PDF p.27)</em>
+      </blockquote>
 
+      <h2 id="verification">Key definitions & verification sources</h2>
+      <p>
+        Some items are not “Muskie biology claims” — they are definitions needed for correct implementation.
+      </p>
+
+      <h3>Moon phase vs illuminated fraction</h3>
+      <p><strong>Why it matters:</strong> quarter phases can have similar illumination but different phase position; the Muskie phase model is based on phase position.</p>
+      <p><strong>Source (open access):</strong> <a href="https://classic.yarnpkg.com/en/package/suncalc" target="_blank" rel="noopener noreferrer">SunCalc docs (phase definition)</a></p>
+      <blockquote>
+        “Moon phase value should be interpreted like this: … 0 | New Moon … 0.25 | First Quarter … 0.5 | Full Moon … 0.75 | Last Quarter …”
+      </blockquote>
+
+      <h3>Dawn/dusk window definition (±30 minutes)</h3>
+      <p><strong>Used for:</strong> the low-light window used by Muskie v1.</p>
+      <p><strong>Source (open access):</strong> <a href="https://minds.wisconsin.edu/handle/1793/85172" target="_blank" rel="noopener noreferrer">Vasquez 2024 — UWSP thesis</a></p>
+      <blockquote>
+        “Observations 30 mins before and after sunrise were classified as dawn and observations 30 mins before and after sunset were classified as dusk.”
+        <br><br>
+        <em>(printed p.30)</em>
+      </blockquote>
+
+      <h3>Civil twilight definition (sun altitude −6°)</h3>
+      <p><strong>Used for:</strong> computing overlap_fraction for the overlap lift.</p>
+      <p><strong>Source (open access):</strong> <a href="https://www.weather.gov/fsd/twilight" target="_blank" rel="noopener noreferrer">NWS/NOAA — Twilight definitions</a></p>
+      <blockquote>
+        “Morning civil twilight begins when the geometric center of the sun is 6 degrees below the horizon, and ends at sunrise.
+        Evening civil twilight begins at sunset, and ends when the geometric center of the sun is 6 degrees below the horizon.”
+      </blockquote>
+
+      <h2 id="example">Worked example (inputs → lifts → rating)</h2>
+      <p>
+        This is a “math-complete” example showing how the model reaches a high rating under strong conditions.
+        Real outputs depend on the actual window timings and local sunrise/sunset.
+      </p>
+
+      <h3>Example: strong Major window (can reach 5.0/5)</h3>
+      <ul>
+        <li><strong>Major</strong> window: L_base = 0.10</li>
+        <li><strong>Peak waning gibbous</strong> phase: L_phase = (1.0 × 3.5 / 2.0) × 0.05 = 0.0875</li>
+        <li><strong>Full civil twilight overlap</strong>: overlap_fraction = 1.0 → L_overlap = 0.07</li>
+        <li><strong>Max low-light at dusk</strong>: timeBias = 1.0 × 0.35 × 1.5 = 0.525 → L_time ≈ 0.039</li>
+        <li><strong>Wind</strong> = 5 mph: L_weather = 0.00</li>
+        <li><strong>Sum</strong>: L_total_raw ≈ 0.2969</li>
+        <li><strong>Season</strong>: April seasonMult = 1.15 → L_total ≈ 0.3414 (clamped to 0.28)</li>
+        <li><strong>Rating</strong>: 1 + 4 × (0.28 / 0.28) = <strong>5.0/5</strong></li>
+      </ul>
+
+      <h2 id="changelog">Model changelog (Muskie)</h2>
+      <ul>
+        <li><strong>2026-01-26</strong>: Published Muskie full transparency page (this page) and linked it from the app.</li>
+        <li><strong>2026-01-26</strong>: Implemented Muskie-specific <strong>waning-gibbous + new-moon</strong> phase model and recalibrated phase weighting.</li>
+        <li><strong>2026-01-26</strong>: Commercial/UI: added <strong>percentile mapping</strong> for Major-window display ratings so 1.0 and 5.0 are equally rare (raw-model math remains visible).</li>
+        <li><strong>2026-01-26</strong>: Added strong dusk weighting (lowLightBias + dusk multiplier) and retained wind-speed penalty while keeping precip/pressure disabled.</li>
+      </ul>
+
+      <h2>Canonical doc source</h2>
+      <p>
+        The canonical version of this content lives in the PrimeBite app repository docs (and is mirrored here for public transparency):
+      </p>
+      <ul>
+        <li><code>docs/MUSKIE_CALCULATIONS.md</code></li>
+        <li><code>docs/MUSKIE_VARIABLES_FACTCHECK.md</code></li>
+      </ul>
+
+      <div class="footer">
+        PrimeBite Fishing — Transparency pages are living documents. If you spot an error, please report it.
+      </div>
+    </div>
+  </main>
+
+  <button class="print-button" onclick="window.print()" aria-label="Print this page">
+    📄 Print / Save PDF
+  </button>
+
+  <script>
+    // Update TOC to include variable anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+      const variablesSection = document.querySelector('.toc a[href="#variables"]').parentElement;
+      if (variablesSection && variablesSection.tagName === 'LI') {
+        const subList = document.createElement('ul');
+        subList.style.marginLeft = '20px';
+        subList.style.fontSize = '0.9em';
+        subList.innerHTML = `
+          <li><a href="#var-moon-position">Moon position (Majors only)</a></li>
+          <li><a href="#var-moon-phase">Moon phase</a></li>
+          <li><a href="#var-low-light">Low-light / crepuscular</a></li>
+          <li><a href="#var-cloud-cover">Cloud cover (solar radiation proxy)</a></li>
+          <li><a href="#var-overlap">Dawn/dusk overlap</a></li>
+          <li><a href="#var-seasonality">Seasonality</a></li>
+          <li><a href="#var-weather">Weather (wind/precip/pressure)</a></li>
+        `;
+        variablesSection.appendChild(subList);
+      }
+    });
+  </script>
+</body>
+</html>
