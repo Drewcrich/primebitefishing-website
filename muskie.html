@@ -280,21 +280,14 @@ p99 = 0.216082</code></pre>
       <p><strong>Verification source:</strong> civil twilight definition (NOAA/NWS) is used so “dawn/dusk overlap” is a standard astronomical window.</p>
 
       <h3 id="var-seasonality">Seasonality multiplier (seasonMult)</h3>
-      <p><strong>Research-backed:</strong> seasonal environmental factors contribute; spring vulnerability is explicitly noted for Muskie.</p>
-      <p><strong>Calibrated:</strong> monthly multipliers and the global cap (1.15) used to keep seasonality meaningful but not dominant.</p>
+      <p><strong>Research-backed:</strong> Shaw et al. 2021 observed muskellunge CPUE increased with mean daily air temperature and declined only above 29°C (p.23). PrimeBite’s seasonality follows that relationship: summer peak (warmer temps = higher CPUE), lower in cooler months.</p>
+      <p><strong>Calibrated:</strong> monthly multipliers and the global cap (1.15) used to approximate the temperature–CPUE relationship by calendar month.</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
       <blockquote>
-        “Multiple environmental factors related to seasonal changes in environmental conditions (i.e., air temperature, solar radiation, and diel period) contributed to walleye and muskellunge trip success and catch rates.”
+        “We hypothesize that air temperature would be negatively related to muskellunge CPUE for successful trips… However, observed muskellunge CPUE for successful trips tended to <strong>increase</strong> with mean daily air temperature and then began to decline at air temperatures &gt; 29°C (Fig 11B). Predicted CPUE for successful trips ranged from a low of 0.10 muskellunge/h at temperatures ≤ 5°C and increased to 0.14 muskellunge/h at air temperatures ≥ 25°C.”
         <br><br>
-        “Hunger induced by spawning metabolic demands and decreased perception from minimal ice fishing pressure may contribute to increased angling vulnerability during the spring months in Escanaba Lake.”
-        <br><br>
-        <em>(PDF p.26)</em>
+        <em>(PDF p.23 — Results)</em>
       </blockquote>
-      <p><strong>Supporting sources (open PDFs):</strong></p>
-      <ul>
-        <li><a href="https://www.researchgate.net/profile/Michael-Hansen-44/publication/233201382_Temporal_Profiles_of_Walleye_Angling_Effort_Harvest_Rate_and_Harvest_in_Northern_Wisconsin_Lakes/links/546389d30cf2cb7e9da989d6/Temporal-Profiles-of-Walleye-Angling-Effort-Harvest-Rate-and-Harvest-in-Northern-Wisconsin-Lakes.pdf" target="_blank" rel="noopener noreferrer">Deroba et al. 2007 — Northern Wisconsin seasonality</a></li>
-        <li><a href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1063&amp;context=ncfwrustaff" target="_blank" rel="noopener noreferrer">Pope &amp; Willis 1996 — seasonal CPUE patterns</a></li>
-      </ul>
 
       <h3 id="var-weather">Weather (wind/precip/pressure)</h3>
       <p><strong>Research-backed:</strong> wind speed negatively affects Muskie CPUE; precip/pressure were not highly weighted.</p>
@@ -354,12 +347,13 @@ p99 = 0.216082</code></pre>
         <li><strong>Max low-light at dusk</strong>: timeBias = 1.0 × 0.35 × 1.5 = 0.525 → L_time ≈ 0.039</li>
         <li><strong>Wind</strong> = 5 mph: L_weather = 0.00</li>
         <li><strong>Sum</strong>: L_total_raw ≈ 0.2969</li>
-        <li><strong>Season</strong>: April seasonMult = 1.15 → L_total ≈ 0.3414 (clamped to 0.28)</li>
+        <li><strong>Season</strong>: June seasonMult = 1.15 → L_total ≈ 0.3414 (clamped to 0.28)</li>
         <li><strong>Rating</strong>: 1 + 4 × (0.28 / 0.28) = <strong>5.0/5</strong></li>
       </ul>
 
       <h2 id="changelog">Model changelog (Muskie)</h2>
       <ul>
+        <li><strong>2026-01-29</strong>: Seasonality recalibrated to Shaw 2021 p.23 observed CPUE (summer peak; higher at warmer temps, decline above 29°C). Major-window percentile mapping re-run to match new curve.</li>
         <li><strong>2026-01-26</strong>: Published Muskie full transparency page (this page) and linked it from the app.</li>
         <li><strong>2026-01-26</strong>: Implemented Muskie-specific <strong>waning-gibbous + new-moon</strong> phase model and recalibrated phase weighting.</li>
         <li><strong>2026-01-26</strong>: Commercial/UI: added <strong>percentile mapping</strong> for Major-window display ratings so 1.0 and 5.0 are equally rare (raw-model math remains visible).</li>
