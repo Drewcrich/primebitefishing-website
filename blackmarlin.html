@@ -179,7 +179,7 @@ seasonMult      = clamp(seasonMultRaw, 0.9, 1.15)
 L_total         = clamp((L_phase + L_overlap_avg + L_ocean) × seasonMult, 0, 0.28)
 rating          = 1 + 4 × (L_total / 0.28)</code></pre>
 
-        <h3>Moon phase (quarter phases / “half-moons”)</h3>
+        <h3 id="var-moon-phase">Moon phase (quarter phases / “half-moons”)</h3>
         <p><strong>Research-backed (GBR diaries):</strong> higher CPUE during half-moons and ~30–40% lower during new or full moons.</p>
         <p><strong>Pepperell et al. 2025 (open access):</strong> <a href="https://doi.org/10.1093/icesjms/fsaf182" target="_blank" rel="noopener noreferrer">DOI</a> • <a href="https://academic.oup.com/icesjms/article-pdf/82/10/fsaf182/64724324/fsaf182.pdf" target="_blank" rel="noopener noreferrer">PDF</a></p>
         <blockquote>“Moon phase had a non-linear relationship with higher CPUE during a half moon and approximately 30%–40% lower during new or full moons (Fig. 7e).”</blockquote>

@@ -160,6 +160,20 @@ rating = 1 + 4 × (L_total / L_REF)               // where L_REF = 0.28</code></
           Important: Bigeye v1 is intentionally conservative, so it typically does not reach 1.0/5 or 5.0/5 in practice.
         </p>
 
+        <h3 id="calculation-methodology">Calculation methodology (All‑day rating)</h3>
+        <p>This section is the "how it's calculated" reference for Bigeye v1.</p>
+        <pre><code>Step 1: Ocean block (SST required; CHL optional)
+L_ocean_raw = L_sst + L_chl
+L_ocean     = clamp(L_ocean_raw, -0.02, +0.02)
+If SST missing → L_ocean = 0.00. If SST &lt; 20°C → L_chl = 0.00 (cold gate).
+
+Step 2: Total lift
+L_total_raw = L_phase + L_time_avg + L_ocean
+L_total     = clamp(L_total_raw, 0, L_REF)
+
+Step 3: Lift → rating
+rating = 1 + 4 × (L_total / L_REF)   // L_REF = 0.28</code></pre>
+
         <h3 id="variables">Variables (what’s research-backed vs calibrated)</h3>
         <p><strong>Research-backed</strong> means the driver/pattern/mechanism is supported by open-access sources. <strong>Calibrated</strong> means we chose the exact curve shape/thresholds/weights/caps to produce a stable 1.0–5.0 score and to avoid overclaiming from region- or gear-specific studies.</p>
 
