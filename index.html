@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrimeBite Fishing</title>
     <meta name="description" content="PrimeBite Fishing — solunar bite windows, personal logbook with optional GPS/photo tagging, and full offline support.">
-    <link rel="canonical" href="https://primetimefishing.netlify.app/">
+    <link rel="canonical" href="https://primetimefishing.app/">
     
     <!-- Open Graph -->
     <meta property="og:title" content="PrimeBite Fishing">
     <meta property="og:description" content="PrimeBite Fishing — solunar bite windows, personal logbook with optional GPS/photo tagging, and full offline support.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://primetimefishing.netlify.app/">
+    <meta property="og:url" content="https://primetimefishing.app/">
     <meta name="theme-color" content="#1a1a1a">
     
     <!-- iOS Smart App Banner -->
@@ -28,8 +28,8 @@
         "@context": "https://schema.org",
         "@type": "PrivacyPolicy",
         "name": "PrimeBite Fishing — Privacy Policy",
-        "url": "https://primetimefishing.netlify.app/#privacy",
-        "dateModified": "2025-12-08",
+        "url": "https://primetimefishing.app/#privacy",
+        "dateModified": "2026-02-04",
         "publisher": {
             "@type": "Organization",
             "name": "PrimeBite Fishing"
@@ -399,7 +399,18 @@
             <div class="container">
                 <h2>Transparency: How Our Bite Logic Works</h2>
                 <div class="privacy-content">
-                    <p>PrimeBite is committed to full transparency about how our bite ratings are calculated. All our algorithms are based on peer-reviewed, open-access research. Below you can find detailed documentation for each species.</p>
+                    <p>PrimeBite is committed to full transparency about how our bite ratings are calculated. All our algorithms are based on peer-reviewed, open-access research. Below you can find detailed documentation for each species and for the baseline profile.</p>
+
+                    <h3>Solunar Windows (Baseline)</h3>
+                    <p>
+                        Baseline is classic solunar timing only (Major/Minor windows, dawn/dusk overlap, moon-illumination tweak). Best for freshwater when your species isn't listed (e.g. bass, crappie, bluegill). Not species-verified.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong><a href="/baseline.html" style="color: #4a9eff;">Solunar Windows (Baseline) — Full Transparency (Website Page)</a></strong>
+                            — Equations, variables, citations, window-scale calibration (Major floor 2.0, Minor ceiling 3.0), and evidence rationale.
+                        </li>
+                    </ul>
 
                     <h3>Yellowfin Tuna</h3>
                     <p>
@@ -492,7 +503,7 @@
             <div class="container">
                 <div class="privacy-content">
                     <h2>Privacy Policy</h2>
-                    <p><em>Last updated: December 8, 2025</em></p>
+                    <p><em>Last updated: February 4, 2026</em></p>
 
                     <p>The <strong>PrimeBite Fishing</strong> app is designed to store your fishing data <strong>locally on your device</strong>. We do not run servers for this app, we do not track you, and we do not share your data.</p>
 
@@ -529,6 +540,10 @@
 
                     <h3>Online Services We Call</h3>
                     <p><strong>Open-Meteo (Sunrise/Sunset and Weather Data)</strong>: We query Open-Meteo for sunrise/sunset times and weather data (temperature, humidity, wind, precipitation, cloud cover, etc.) using your coordinates and date to improve accuracy. Requests are anonymous. If the network is unavailable, the app uses a local fallback calculation.</p>
+                    
+                    <p><strong>NOAA CoastWatch ERDDAP (Ocean Data)</strong>: For offshore species forecasts, we query NOAA's CoastWatch ERDDAP service for sea surface temperature (SST) data using your coordinates and date. This is a free, public U.S. government service. Requests are anonymous. NOAA's privacy policy: <a href="https://www.noaa.gov/privacy-policy" class="email-link" target="_blank" rel="noopener noreferrer">https://www.noaa.gov/privacy-policy</a></p>
+                    
+                    <p><strong>Copernicus Marine Service (Chlorophyll Data)</strong>: For offshore species forecasts, we query the Copernicus Marine Service (via a proxy server) for chlorophyll-a concentration data using your coordinates and date. Requests are anonymous. The proxy server does not store or log any user data. Copernicus privacy policy: <a href="https://marine.copernicus.eu/privacy-policy" class="email-link" target="_blank" rel="noopener noreferrer">https://marine.copernicus.eu/privacy-policy</a></p>
 
                     <h3>Subscription Services</h3>
                     <p><strong>RevenueCat</strong>: We use RevenueCat to manage subscriptions and purchases for our premium features (PrimeBite Pro). RevenueCat may collect:</p>
@@ -574,7 +589,7 @@
             <div class="container">
                 <div class="privacy-content">
                     <h2>Terms of Use</h2>
-                    <p><em>Last updated: December 8, 2025</em></p>
+                    <p><em>Last updated: February 4, 2026</em></p>
 
                     <p>Please read these Terms of Use ("Terms") carefully before using the <strong>PrimeBite Fishing</strong> mobile application ("App") operated by us ("we," "us," or "our").</p>
 
@@ -676,7 +691,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 PrimeBite Fishing</p>
+            <p>&copy; 2026 PrimeBite Fishing</p>
             <p>
                 <a href="#privacy">Privacy Policy</a> | 
                 <a href="#terms">Terms of Use</a>
