@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeBite Fishing — Mahi‑mahi Transparency</title>
-  <meta name="description" content="PrimeBite Fishing — Mahi‑mahi full transparency: equations, variables, citations, exact quotes with page pointers, and calibration rationale.">
+  <title>PrimeBite Fishing — Mahi‑mahi Research &amp; Methodology</title>
+  <meta name="description" content="PrimeBite Fishing — Mahi‑mahi: variables, citations, methodology. Exact weights and equations are proprietary.">
   <meta name="theme-color" content="#1a1a1a">
   <link rel="canonical" href="https://www.primebitefishing.com/mahi">
 
@@ -114,10 +114,9 @@
         <a href="index.html#features">Features</a>
         <a href="index.html#faq">FAQ</a>
         <a href="index.html#transparency">Transparency</a>
-        <a href="#math">Math</a>
+        <a href="#methodology">Methodology</a>
         <a href="#variables">Variables</a>
-        <a href="#worked-example">Worked example</a>
-        <a href="#changelog">Changelog</a>
+        <a href="#environmental-variables">Environmental</a>
       </nav>
     </div>
   </header>
@@ -125,57 +124,27 @@
   <main>
     <section class="section">
       <div class="container">
-        <h2>Mahi‑mahi — Full Transparency (v1)</h2>
-        <p class="muted"><span class="pill">Last updated: January 2026</span> <span class="pill">Live URL: <a href="https://www.primebitefishing.com/mahi">www.primebitefishing.com/mahi</a></span></p>
+        <span class="pill">PrimeBite Fishing</span>
+        <span class="pill">Mahi‑mahi</span>
+        <span class="pill">Research &amp; Methodology</span>
 
-        <p>
-          This page is designed to leave nothing out: the <strong>exact equations</strong>, every variable we use, the open-access URLs behind each driver, verbatim quotes (with page pointers where available), and a plain-English explanation of what is <strong>research-backed</strong> vs what is <strong>calibrated</strong>.
-        </p>
+        <h1>Mahi‑mahi — Research &amp; Methodology (v1)</h1>
+        <p><em>Last updated: 2026-02-15</em></p>
+        <p>This page documents the variables we use for Mahi‑mahi (v1), the open-access URLs behind each driver, verbatim quotes, and what is research-backed vs calibrated. We do not publish proprietary weights, caps, or equations.</p>
 
         <div class="toc">
           <strong>On this page</strong>
           <ul>
-            <li><a href="#math">The exact math (Mahi v1)</a></li>
-            <li><a href="#variables">Variables (research-backed vs calibrated)</a></li>
-            <li><a href="#calculation-methodology">Calculation methodology</a></li>
-            <li><a href="#environmental-variables">Environmental variables (verification)</a></li>
-            <li><a href="#worked-example">Worked examples</a></li>
-            <li><a href="#changelog">Model changelog</a></li>
+            <li><a href="#methodology">How it works (overview)</a></li>
+            <li><a href="#variables">Variables</a></li>
+            <li><a href="#environmental-variables">Environmental variables</a></li>
           </ul>
         </div>
 
-        <h3 id="math">The exact math (Mahi v1)</h3>
-        <p>Mahi is an offshore <strong>all-day</strong> rating built from “lifts” that map into a 1.0–5.0 rating.</p>
+        <h2 id="methodology">How it works (overview)</h2>
+        <p>Mahi is an offshore all-day rating built from phase lift, overlap and night-availability assumptions, and an ocean block (SST and optional chlorophyll). Research chooses the drivers; we calibrate weights and caps so the output maps to 1.0–5.0. Exact values are proprietary.</p>
 
-        <pre><code>L_ocean_raw = L_sst + L_chl
-L_ocean     = clamp(L_ocean_raw, -0.06, +0.02)   // ocean cap (cold can reduce more than warm can boost)
-
-L_total_raw = L_phase + L_overlap_avg + L_time_avg + L_ocean
-L_total     = clamp(L_total_raw, 0, L_REF)       // global clamp
-
-rating = 1 + 4 × (L_total / L_REF)               // where L_REF = 0.28</code></pre>
-
-        <h3 id="calculation-methodology">Calculation Methodology (All‑day rating)</h3>
-        <p>This section is the “how it’s calculated” reference for Mahi v1 (mirrors the canonical internal doc).</p>
-        <pre><code>Step 1) Phase curve (shared Yellowfin/Mahi family)
-phaseBoostValue = moonPhaseBoostYellowfinMahi(f)  // f in [0,1]
-L_phase = (phaseBoostValue × phaseWeight / 2.0) × 0.31
-phaseWeight = 1.33
-
-Step 2) Fixed all‑day baselines (modeling assumptions)
-L_overlap_avg = overlap(overlapMaxBoost × 0.4, overlapMaxBoost)
-L_time_avg    = timeBias(nightAvailability × 0.5)   // assume ~50% of day is night
-
-Step 3) Ocean block (SST required; CHL optional)
-If SST missing → L_ocean = 0.00
-If SST &lt; 19°C → force L_chl = 0.00 (cold gate)
-L_ocean = clamp(L_sst + L_chl, -0.06, +0.02)
-
-Step 4) Total lift → rating
-L_total = clamp(L_phase + L_overlap_avg + L_time_avg + L_ocean, 0, 0.28)
-Rating  = 1 + 4 × (L_total / 0.28)</code></pre>
-
-        <h3 id="variables">Variables (what’s research-backed vs calibrated)</h3>
+        <h2 id="variables">Variables (what's research-backed vs calibrated)</h2>
         <p><strong>Research-backed</strong> means the driver/pattern/mechanism is supported by open-access sources. <strong>Calibrated</strong> means we chose the exact curve shape/thresholds/weights/caps to produce a stable 1.0–5.0 score and to avoid overclaiming from region- or gear-specific studies.</p>
 
         <h4 id="var-moon-phase">Moon phase (L_phase)</h4>
@@ -183,20 +152,18 @@ Rating  = 1 + 4 × (L_total / 0.28)</code></pre>
         <p><strong>Source (open PDF):</strong> <a href="https://ncseagrant.ncsu.edu/coastwatch/wp-content/uploads/sites/13/2020/12/WinterHookLineScience.pdf" target="_blank" rel="noopener noreferrer">NC Sea Grant — Hook, Line &amp; Science (Winter 2020)</a></p>
         <blockquote>“Scientists found a relationship between catch rates and lunar phase for 5 of the 8 species as shown here…<br>Dolphinfish first quarter” <span class="muted">(PDF p.2)</span></blockquote>
 
-        <p><strong>Calibrated:</strong> we use a smooth shared phase curve (<code>yellowfin‑mahi</code>) and scale it into a lift:</p>
-        <pre><code>L_phase = (phaseBoostValue × phaseWeight / 2.0) × 0.31
-phaseWeight = 1.33</code></pre>
+        <p><strong>Calibrated:</strong> we use a smooth shared phase curve (First Quarter peak) and scale it into a lift; exact weight and scale are proprietary.</p>
 
-        <h4 id="var-overlap">Average dawn/dusk opportunity (L_overlap_avg) — modeling assumption</h4>
+        <h3 id="var-overlap">Average dawn/dusk opportunity (L_overlap_avg) — modeling assumption</h3>
         <p>Offshore day ratings don’t use time windows. For non‑Yellowfin offshore species we include a small fixed overlap lift so overlap isn’t implicitly treated as 0 in a 24‑hour score. This is a <strong>modeling/UX assumption</strong> (not claimed as a research effect size).</p>
 
-        <h4 id="var-night">Night availability (L_time_avg)</h4>
+        <h3 id="var-night">Night availability (L_time_avg)</h3>
         <p><strong>Research-backed (context):</strong> Mahi spawning events are predicted to occur at night and chiefly at the new moon phase (context; not a universal CPUE effect-size study).</p>
         <p><strong>Source (open access):</strong> <a href="https://www.frontiersin.org/articles/10.3389/fmars.2021.626082/pdf" target="_blank" rel="noopener noreferrer">Schlenker et al. 2021 — Frontiers in Marine Science (PDF)</a></p>
-        <p><strong>Calibrated:</strong> we translate diel context into a small fixed all‑day average lift using <code>nightAvailability = 0.285</code> and assume ~50% of a day is night.</p>
+        <p><strong>Calibrated:</strong> we translate diel context into a small fixed all-day average lift; exact value is proprietary.</p>
 
-        <h3 id="environmental-variables">Environmental Variables (Verification)</h3>
-        <p>This section documents <strong>what the papers say</strong> (verbatim quotes with page pointers) and then shows exactly how PrimeBite maps that into a stable rating (calibrated thresholds + caps).</p>
+        <h2 id="environmental-variables">Environmental variables (verification)</h2>
+        <p>This section documents <strong>what the papers say</strong> (verbatim quotes with page pointers). How we map that into a stable rating uses proprietary thresholds and caps.</p>
 
         <h4 id="var-oceanography">Oceanography (SST + chlorophyll‑a) (L_ocean)</h4>
         <p><strong>Research-backed:</strong> multiple open-access studies show SST and chlorophyll-a covary with dolphinfish/mahi CPUE/habitat, but ranges are region-dependent.</p>
@@ -220,34 +187,8 @@ phaseWeight = 1.33</code></pre>
         <blockquote>“82.90% of total fish... was caught in waters with concentrations of chl‑a between 0.05 and 0.25 mg/m3...” <span class="muted">(Marín‑Enríquez &amp; Muhlia‑Melo 2018, PDF p.5)</span></blockquote>
         <blockquote>“Higher values of CPUE occurred in places where Chl‑a varied between 0.5 and 2.2 mg/m3. Below and above these values respectively, CPUE decreased.” <span class="muted">(Martínez Arias et al. 2022, PDF p.5)</span></blockquote>
 
-        <p><strong>Calibrated (exact rules used in-app):</strong></p>
-        <ul>
-          <li><strong>SST required</strong> (if missing, ocean is treated as neutral: <code>L_ocean = 0.00</code>).</li>
-          <li><strong>Cold-water gate:</strong> if <code>SST &lt; 19°C</code>, force <code>L_chl = 0.00</code> (do not allow CHL bonuses to partially cancel cold penalties).</li>
-          <li><strong>Ocean cap:</strong> <code>L_ocean = clamp(L_sst + L_chl, -0.06, +0.02)</code>.</li>
-        </ul>
+        <p><strong>Calibrated:</strong> SST is required (if missing, ocean is neutral). We apply a cold-water gate so CHL does not cancel cold penalties below a set threshold, and an ocean cap; exact values are proprietary.</p>
 
-        <h3 id="worked-example">Worked examples (inputs → lifts → rating)</h3>
-        <h4>Best case (prime moon window + strong ocean)</h4>
-        <pre><code>Assume:
-phaseBoostValue = 1.0 (First Quarter peak for the shared phase model)
-SST = 26.5°C → L_sst = +0.01
-CHL = 0.10 mg/m³ → L_chl = +0.01
-
-L_ocean_raw = 0.02 → L_ocean = +0.02 (cap)
-L_total_raw includes L_phase + L_overlap_avg + L_time_avg + L_ocean
-Global clamp allows 5.0/5 only when L_total reaches L_REF = 0.28</code></pre>
-
-        <h4>Cold water (habitat-limiting)</h4>
-        <pre><code>Assume:
-SST = 15°C → L_sst = -0.06
-SST < 19°C → CHL ignored (L_chl = 0.00)
-Ocean cap allows strong negative influence to reach 1.0/5 in clearly non-viable cold water</code></pre>
-
-        <h3 id="changelog">Model changelog (Mahi)</h3>
-        <ul>
-          <li><strong>2026-01:</strong> Published full transparency page (this page). No changes to scoring logic.</li>
-        </ul>
       </div>
     </section>
   </main>

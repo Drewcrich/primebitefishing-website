@@ -122,57 +122,25 @@
     <div class="container">
       <span class="pill">PrimeBite Fishing</span>
       <span class="pill">Yellowfin Tuna</span>
-      <span class="pill">Full Transparency</span>
+      <span class="pill">Research &amp; Methodology</span>
 
-      <h1>Yellowfin Tuna — Full Transparency (v1)</h1>
-      <p><em>Last updated: January 2026</em></p>
-
-      <p>
-        This page is designed to leave nothing out: the exact equations, every variable we use, the open-access URLs behind each driver,
-        verbatim quotes (with page pointers where available), and a plain-English explanation of what is research-backed vs what is calibrated.
-      </p>
+      <h1>Yellowfin Tuna — Research &amp; Methodology (v1)</h1>
+      <p><em>Last updated: 2026-02-15</em></p>
+      <p>This page documents the variables we use for Yellowfin (v1), the open-access URLs behind each driver, verbatim quotes, and what is research-backed vs calibrated. We do not publish proprietary weights, caps, or equations.</p>
 
       <div class="toc">
         <strong>On this page</strong>
         <ul>
-          <li><a href="#math">The exact math (Yellowfin v1)</a></li>
-          <li><a href="#variables">Variables (research-backed vs calibrated)</a></li>
-          <li><a href="#calculation-methodology">Calculation methodology</a></li>
-          <li><a href="#environmental-variables">Environmental variables (verification)</a></li>
-          <li><a href="#example">Worked example</a></li>
-          <li><a href="#changelog">Model changelog</a></li>
+          <li><a href="#methodology">How it works</a></li>
+          <li><a href="#variables">Variables</a></li>
+          <li><a href="#environmental-variables">Environmental variables</a></li>
+          <li><a href="#environmental-variables">Environmental variables</a></li>
         </ul>
       </div>
 
-      <h2 id="math">The exact math (Yellowfin v1)</h2>
-      <p>Yellowfin is an offshore <strong>all-day</strong> rating (no Major/Minor windows) built from “lifts” that map to a 1.0–5.0 rating.</p>
-
-      <pre><code>L_ocean_raw = L_sst + L_chl + L_gradient
-L_ocean     = clamp(L_ocean_raw, -0.06, +0.10)   // ocean sub-cap (anti-double-counting)
-
-L_total_raw = L_phase + L_illum + L_ocean
-L_total     = clamp(L_total_raw, 0, L_REF)       // global clamp
-
-rating = 1 + 4 × (L_total / L_REF)               // where L_REF = 0.28</code></pre>
-
-      <h2 id="calculation-methodology">Calculation methodology (All‑day rating)</h2>
-      <p>
-        This section is the “how it’s calculated” reference for Yellowfin v1. Yellowfin combines a phase lift, an illumination lift,
-        and a capped ocean block (SST + chlorophyll‑a + gradients) before mapping into the 1.0–5.0 scale.
-      </p>
-      <pre><code>Step 1) Phase lift
-phaseBoostValue = moonPhaseBoostYellowfinMahi(f)  // shared Yellowfin/Mahi family
-L_phase = (phaseBoostValue × phaseWeight / 2.0) × 0.31
-
-Step 2) Illumination lift (separate mechanism from phase)
-L_illum = yellowfinLunarIlluminationLift(moonIllumFraction)
-
-Step 3) Ocean block (SST + CHL + gradients) with anti-double-counting cap
-L_ocean = clamp(L_sst + L_chl + L_gradient, -0.06, +0.10)
-
-Step 4) Total lift → rating
-L_total = clamp(L_phase + L_illum + L_ocean, 0, 0.28)
-Rating  = 1 + 4 × (L_total / 0.28)</code></pre>
+      
+      <h2 id="methodology">How it works (overview)</h2>
+      <p>Yellowfin is an offshore all-day rating (no Major/Minor windows) built from phase lift, illumination lift, and a capped ocean block (SST + chlorophyll + gradients). Research chooses the drivers; we calibrate thresholds and weights so the output is stable. Exact weights and caps are proprietary.</p>
 
       <h2 id="variables">Variables (what’s research-backed vs calibrated)</h2>
       <p>
@@ -205,7 +173,7 @@ Rating  = 1 + 4 × (L_total / 0.28)</code></pre>
       <h2 id="environmental-variables">Environmental variables (verification)</h2>
       <p>
         This section focuses on the ocean data inputs (SST, chlorophyll‑a, and fronts/edges) and provides the primary open-access sources
-        and quotes that support using them as drivers. Exact thresholds and lift magnitudes are calibrated and disclosed in-app and in code.
+        and quotes that support using them as drivers. Exact thresholds and lift magnitudes are proprietary.
       </p>
 
       <h3 id="var-sst">Sea surface temperature (SST) (L_sst)</h3>
@@ -240,42 +208,7 @@ Rating  = 1 + 4 × (L_total / 0.28)</code></pre>
         <em>(PDF p.4)</em>
       </blockquote>
 
-      <h2 id="example">Worked example (inputs → lifts → rating)</h2>
-      <p>
-        These are “math-complete” examples showing how the model reaches the ends of the 1–5 scale. A fully reproducible real-world example
-        (with fixed ocean inputs for a specific date/location) is planned next.
-      </p>
-
-      <h3>Best case (can reach 5.0/5)</h3>
-      <ul>
-        <li><strong>L_phase</strong> ≈ 0.21 (near First Quarter peak)</li>
-        <li><strong>L_illum</strong> = 0.00 (neutral)</li>
-        <li><strong>L_ocean</strong> = +0.10 (capped)</li>
-        <li><strong>L_total_raw</strong> ≈ 0.31 → clamped to 0.28</li>
-        <li><strong>Rating</strong> = 1 + 4 × (0.28 / 0.28) = <strong>5.0/5</strong></li>
-      </ul>
-
-      <h3>Worst case (can reach 1.0/5)</h3>
-      <ul>
-        <li><strong>L_phase</strong> ≈ 0.00 (off-peak)</li>
-        <li><strong>L_illum</strong> = −0.01 (very bright nights)</li>
-        <li><strong>L_ocean</strong> &lt; 0 (poor habitat)</li>
-        <li><strong>L_total_raw</strong> &lt; 0 → clamped to 0</li>
-        <li><strong>Rating</strong> = 1 + 4 × (0 / 0.28) = <strong>1.0/5</strong></li>
-      </ul>
-
-      <h2 id="changelog">Model changelog (Yellowfin)</h2>
-      <ul>
-        <li><strong>2025-01</strong>: Removed fixed overlap baseline from Yellowfin day rating (clarity; not research-backed for offshore day ratings).</li>
-        <li><strong>2025-12</strong>: Standardized capped ocean block (SST + CHL + gradients) to avoid double-counting; tuned to preserve 1.0–5.0 range.</li>
-        <li><strong>2026-01</strong>: Published full transparency pages (this page), including quotes + page pointers and explicit calibration rationale.</li>
-      </ul>
-
-      <h2>Canonical doc source</h2>
-      <p>
-        The canonical version of this content lives in the PrimeBite app repository docs (and is mirrored here for public transparency):
-        <strong>docs/YELLOWFIN_TRANSPARENCY.md</strong>.
-      </p>
+      
     </div>
   </main>
 

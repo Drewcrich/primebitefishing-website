@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeBite Fishing — Northern Pike Transparency</title>
-  <meta name="description" content="PrimeBite Fishing — Northern Pike full transparency: equations, variables, citations, exact quotes with page pointers, and calibration rationale.">
+  <title>PrimeBite Fishing — Northern Pike Research &amp; Methodology</title>
+  <meta name="description" content="PrimeBite Fishing — Northern Pike: research-backed variables, citations, and methodology. Evidence transparency without proprietary calibration details.">
   <meta name="theme-color" content="#1a1a1a">
   <link rel="canonical" href="https://www.primebitefishing.com/pike">
 
@@ -113,10 +113,9 @@
       <nav class="nav">
         <a href="/">Home</a>
         <a href="/#transparency">Transparency</a>
-        <a href="#math">Math</a>
+        <a href="#methodology">Methodology</a>
         <a href="#variables">Variables</a>
-        <a href="#example">Worked example</a>
-        <a href="#changelog">Changelog</a>
+        <a href="#verification">Definitions</a>
       </nav>
     </div>
   </header>
@@ -125,56 +124,25 @@
     <div class="container">
       <span class="pill">PrimeBite Fishing</span>
       <span class="pill">Northern Pike</span>
-      <span class="pill">Full Transparency</span>
+      <span class="pill">Research &amp; Methodology</span>
 
-      <h1>Northern Pike — Full Transparency (v1)</h1>
-      <p><em>Last updated: 2026-01-29</em></p>
-
-      <p>
-        This page is designed to leave nothing out: the exact equations, every variable we use, the open-access URLs behind each driver,
-        verbatim quotes (with page pointers where available), and a plain-English explanation of what is research-backed vs what is calibrated.
-      </p>
+      <h1>Northern Pike — Research &amp; Methodology (v1)</h1>
+      <p><em>Last updated: 2026-02-15</em></p>
+      <p>This page documents the variables we use for Northern Pike (v1), the open-access URLs behind each driver, verbatim quotes, and what is research-backed vs calibrated. We do not publish proprietary weights, caps, or equations.</p>
 
       <div class="toc">
         <strong>On this page</strong>
         <ul>
-          <li><a href="#math">The exact math (Northern Pike v1)</a></li>
-          <li><a href="#limitations">Study limitations (Kuparinen 2010)</a></li>
-          <li>
-            <a href="#variables">Variables (research-backed vs calibrated)</a>
-            <ul>
-              <li><a href="#var-moon-phase">Moon phase</a></li>
-              <li><a href="#var-wind">Wind speed</a></li>
-              <li><a href="#var-dusk">Dusk / civil twilight</a></li>
-              <li><a href="#var-not-used">Explicitly not used</a></li>
-            </ul>
-          </li>
-          <li><a href="#verification">Key definitions & verification sources</a></li>
-          <li><a href="#example">Worked example</a></li>
-          <li><a href="#changelog">Model changelog</a></li>
+          <li><a href="#methodology">How it works (overview)</a></li>
+          <li><a href="#limitations">Study limitations</a></li>
+          <li><a href="#variables">Variables</a></li>
+          <li><a href="#verification">Key definitions</a></li>
         </ul>
       </div>
 
-      <h2 id="math">The exact math (Northern Pike v1)</h2>
-      <p>
-        Northern Pike (v1) is a freshwater <strong>all-day</strong> rating: we do <strong>not</strong> publish Major/Minor “bite times” for Pike
-        because we do not have verified open-access evidence that Pike respond to solunar <em>position windows</em>.
-      </p>
-
-      <pre><code>// Lift-to-rating map (global; PrimeBite standard)
-L_total_clamped = clamp(L_total, 0, L_REF)          // where L_REF = 0.28
-raw_rating = 1 + 4 × (L_total_clamped / L_REF)      // then clamped to [1.0, 5.0]
-
-// Northern Pike day lift (all-day; no Majors/Minors)
-L_total_raw = L_phase + L_weather + L_dusk
-L_total = applySeasonalMultiplier(L_total_raw, seasonMult)   // Pike v1: seasonMult = 1.0 (disabled)
-
-rating = liftToRating5(L_total)</code></pre>
-
-      <p>
-        Key idea: <strong>research chooses the drivers</strong> (what matters), then we <strong>calibrate</strong> the exact sizes and curve shapes so the output
-        is stable, explainable, and consistently mapped into 1.0–5.0.
-      </p>
+      
+      <h2 id="methodology">How it works (overview)</h2>
+      <p>Northern Pike (v1) is a freshwater all-day rating (no Major/Minor bite times). We combine moon phase (new/full peak), wind speed (positive within observed range), and a small dusk calibration. Research chooses the drivers; we calibrate weights and curve shape to map into 1.0–5.0. Exact values are proprietary.</p>
 
       <h2 id="limitations">Study limitations (Kuparinen 2010)</h2>
       <p>
@@ -210,7 +178,7 @@ rating = liftToRating5(L_total)</code></pre>
       <h3 id="var-wind">Wind speed (L_weather)</h3>
       <p><strong>Research-backed:</strong> within the observed range in Kuparinen (2010), higher wind speed is associated with increased catch rates.</p>
       <p><strong>Calibrated:</strong> the exact mapping from mph → score adjustment (we use a simple monotonic boost capped at the observed range; no penalty without evidence).</p>
-      <p><strong>Implementation:</strong> <code>pikeWindAdj(windMph)</code> capped at 15.4 mph (Kuparinen’s observed range).</p>
+      <p><strong>Implementation:</strong> wind adjustment capped at the observed range from the study (exact mapping proprietary).</p>
       <p><strong>Source (open access):</strong> <a href="https://www.agrar.hu-berlin.de/de/institut/departments/dntw/jp_bfm/publ_html/kuparinen-et-al-2010/@@download/file/kuparinenetal_fishres_2010.pdf" target="_blank" rel="noopener noreferrer">Kuparinen et al. 2010 — Fisheries Research (PDF)</a></p>
       <blockquote>
         “Catch rates of pike were significantly increased … at … high wind speeds …”
@@ -221,7 +189,7 @@ rating = liftToRating5(L_total)</code></pre>
       <h3 id="var-dusk">Dusk / civil twilight (L_dusk)</h3>
       <p><strong>Research-backed:</strong> Pike catch rates are higher <strong>during dusk</strong>.</p>
       <p><strong>Calibrated:</strong> because Pike is an <em>all-day</em> rating (no specific bite-time windows), we apply dusk as a <strong>small all-day calibration</strong> based on evening civil twilight duration.</p>
-      <p><strong>Implementation (all-day calibration):</strong> compute evening civil twilight minutes, then <code>duskAdj = (minutes / 1440) × duskAlwaysBoost</code>.</p>
+      <p><strong>Implementation (all-day calibration):</strong> compute evening civil twilight minutes, then a small dusk boost is applied (exact formula proprietary).</p>
       <p><strong>Source (open access):</strong> <a href="https://www.agrar.hu-berlin.de/de/institut/departments/dntw/jp_bfm/publ_html/kuparinen-et-al-2010/@@download/file/kuparinenetal_fishres_2010.pdf" target="_blank" rel="noopener noreferrer">Kuparinen et al. 2010 — Fisheries Research (PDF)</a></p>
       <blockquote>
         “Catch rates of pike were significantly increased … as well as during dusk.”
@@ -246,32 +214,7 @@ rating = liftToRating5(L_total)</code></pre>
         <li><strong>Moon phase vs illumination</strong>: phase position (0..1) is not the same thing as illuminated fraction (0..1). Pike’s <code>pike-newfull</code> model uses <strong>phase position</strong> (see <code>docs/PIKE_VARIABLES_FACTCHECK.md</code> section D1).</li>
       </ul>
 
-      <h2 id="example">Worked example (simple)</h2>
-      <p>
-        Example day: near new moon + windy conditions + normal dusk duration.
-        Pike’s day rating increases when multiple evidence-backed drivers align (new/full + wind + dusk).
-      </p>
-      <pre><code>// Example inputs (illustrative)
-moonPhase = 0.00      // new moon (phase position)
-windMph   = 12.0      // within observed range
-duskMin   = 35        // typical evening civil twilight duration
-
-// Steps
-phaseBoost = moonPhaseBoostPikeNewFull(moonPhase)      // 0..1 (peaks at new/full)
-L_phase    = phaseLift(phaseBoost, phaseWeight)        // magnitude calibrated
-L_weather  = weatherLift(pikeWindAdj(windMph))         // positive within range; capped at 15.4 mph
-duskAdj    = (duskMin / 1440) × duskAlwaysBoost        // small
-L_dusk     = duskLift(duskAdj)                         // small by design
-
-L_total    = L_phase + L_weather + L_dusk              // seasonality disabled (×1.0)
-rating     = liftToRating5(L_total)                    // 1.0..5.0</code></pre>
-
-      <h2 id="changelog">Model changelog</h2>
-      <ul>
-        <li><strong>2026-01-29:</strong> Pike v1 finalized as an <strong>all-day</strong> 1.0–5.0 rating (no Major/Minor bite times), with a dedicated <code>pike-newfull</code> moon-phase model and an offshore-style distribution validation plan/script.</li>
-        <li><strong>2026-01:</strong> Removed/disabled any Pike drivers without verified open-access evidence (position windows; night preference; pressure/precip effects).</li>
-      </ul>
-
+      
       <div class="footer">
         PrimeBite Fishing — Northern Pike Transparency (v1)
       </div>

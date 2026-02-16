@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeBite Fishing — Black Marlin Transparency</title>
-  <meta name="description" content="PrimeBite Fishing — Black Marlin full transparency: equations, variables, citations, exact quotes with page pointers, and calibration rationale.">
+  <title>PrimeBite Fishing — Black Marlin Research &amp; Methodology</title>
+  <meta name="description" content="PrimeBite Fishing — Black Marlin: variables, citations, methodology. Exact weights and equations are proprietary.">
   <meta name="theme-color" content="#1a1a1a">
   <link rel="canonical" href="https://www.primebitefishing.com/blackmarlin">
 
@@ -114,12 +114,9 @@
         <a href="index.html#features">Features</a>
         <a href="index.html#faq">FAQ</a>
         <a href="index.html#transparency">Transparency</a>
-        <a href="#math">Math</a>
+        <a href="#methodology">Methodology</a>
         <a href="#variables">Variables</a>
-        <a href="#calculation-methodology">Methodology</a>
         <a href="#environmental-variables">Environmental</a>
-        <a href="#worked-example">Worked example</a>
-        <a href="#changelog">Changelog</a>
       </nav>
     </div>
   </header>
@@ -127,57 +124,28 @@
   <main>
     <section class="section">
       <div class="container">
-        <h2>Black Marlin — Full Transparency (v1)</h2>
-        <p class="muted"><span class="pill">Last updated: January 2026</span> <span class="pill">Live URL: <a href="https://www.primebitefishing.com/blackmarlin">www.primebitefishing.com/blackmarlin</a></span></p>
+        <span class="pill">PrimeBite Fishing</span>
+        <span class="pill">Black Marlin</span>
+        <span class="pill">Research &amp; Methodology</span>
 
-        <p>
-          This page is designed to leave nothing out: the <strong>exact equations</strong>, every variable we use, the open-access URLs behind each driver, verbatim quotes (with page pointers where available), and a plain-English explanation of what is <strong>research-backed</strong> vs what is <strong>calibrated</strong>.
-        </p>
+        <h1>Black Marlin — Research &amp; Methodology (v1)</h1>
+        <p><em>Last updated: 2026-02-15</em></p>
+        <p>This page documents the variables we use for Black Marlin (v1), the open-access URLs behind each driver, verbatim quotes, and what is research-backed vs calibrated. We do not publish proprietary weights, caps, or equations.</p>
 
         <div class="toc">
           <strong>On this page</strong>
           <ul>
-            <li><a href="#math">The exact math (Black Marlin v1)</a></li>
-            <li><a href="#variables">Variables (research-backed vs calibrated)</a></li>
-            <li><a href="#calculation-methodology">Calculation methodology</a></li>
-            <li><a href="#environmental-variables">Environmental variables (verification)</a></li>
-            <li><a href="#worked-example">Worked examples</a></li>
-            <li><a href="#changelog">Model changelog</a></li>
+            <li><a href="#methodology">How it works (overview)</a></li>
+            <li><a href="#variables">Variables</a></li>
+            <li><a href="#environmental-variables">Environmental variables</a></li>
           </ul>
         </div>
 
-        <h3 id="math">The exact math (Black Marlin v1)</h3>
-        <p>Black Marlin is an offshore <strong>all-day</strong> rating built from “lifts” that map into a 1.0–5.0 rating.</p>
+        <h2 id="methodology">How it works (overview)</h2>
+        <p>Black Marlin is an offshore all-day rating built from phase (quarter/half-moon peak), overlap, SST-only ocean block, and GBR-timed seasonality. Research chooses the drivers; we calibrate weights and caps so the output maps to 1.0–5.0. Exact values are proprietary.</p>
 
-        <pre><code>L_ocean_raw = L_sst
-L_ocean     = clamp(L_ocean_raw, -0.06, +0.02)   // SST-only ocean cap
-
-L_total_preSeason  = L_phase + L_overlap_avg + L_ocean
-L_total_postSeason = applySeasonalMultiplier(L_total_preSeason, seasonMult)
-
-L_total = clamp(L_total_postSeason, 0, L_REF)    // global clamp
-rating  = 1 + 4 × (L_total / L_REF)              // where L_REF = 0.28</code></pre>
-
-        <h3 id="variables">Variables (what’s research-backed vs calibrated)</h3>
+        <h2 id="variables">Variables (what's research-backed vs calibrated)</h2>
         <p><strong>Research-backed</strong> means the driver/pattern/mechanism is supported by open-access sources. <strong>Calibrated</strong> means we chose the exact curve shape/thresholds/weights/caps to produce a stable 1.0–5.0 score and to avoid overclaiming from region- or gear-specific studies.</p>
-
-        <h3 id="calculation-methodology">Calculation Methodology (All‑day rating)</h3>
-        <p>This section is the “how it’s calculated” reference for Black Marlin v1.</p>
-        <pre><code>phaseBoostValue = moonPhaseBoostBlackMarlinQuarters(f)   // f in [0,1]
-L_phase         = (phaseBoostValue × phaseWeight / 2.0) × 0.31
-
-L_overlap_avg   = overlap(overlapMaxBoost × 0.4, overlapMaxBoost)
-
-// Ocean (SST only):
-// - If SST missing → ocean treated as neutral (0.00)
-L_ocean         = clamp(blackMarlinSstLift(sstC), -0.06, +0.02)
-
-// Seasonality:
-seasonMultRaw   = seasonalMultipliers[monthIndex]
-seasonMult      = clamp(seasonMultRaw, 0.9, 1.15)
-
-L_total         = clamp((L_phase + L_overlap_avg + L_ocean) × seasonMult, 0, 0.28)
-rating          = 1 + 4 × (L_total / 0.28)</code></pre>
 
         <h3 id="var-moon-phase">Moon phase (quarter phases / “half-moons”)</h3>
         <p><strong>Research-backed (GBR diaries):</strong> higher CPUE during half-moons and ~30–40% lower during new or full moons.</p>
@@ -187,7 +155,7 @@ rating          = 1 + 4 × (L_total / 0.28)</code></pre>
         <h3 id="var-seasonality">Seasonality (GBR timing)</h3>
         <p><strong>Research-backed:</strong> a GBR spawning aggregation forms in Oct–Nov; the charter season is Sep–Dec with peak CPUE Oct–Nov.</p>
         <p><strong>Domeier &amp; Speare 2012 (open access):</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0031629" target="_blank" rel="noopener noreferrer">PLOS ONE full text</a></p>
-        <p><strong>Calibrated:</strong> exact multipliers (GBR-timed, applied globally as a modeling choice): Sep/Dec ×1.05; Oct/Nov ×1.10; all other months ×1.00.</p>
+        <p><strong>Calibrated:</strong> we apply GBR-timed seasonal multipliers (Sep–Dec boosted, Oct–Nov peak); exact values are proprietary.</p>
 
         <h3 id="environmental-variables">Environmental variables (verification)</h3>
         <p>This section documents <strong>what the papers say</strong> (verbatim quotes) and then shows how PrimeBite maps that into a stable rating (calibrated thresholds + caps).</p>
@@ -197,36 +165,7 @@ rating          = 1 + 4 × (L_total / 0.28)</code></pre>
         <blockquote>“In this study, high CPUE occurred between 29–31°C...”</blockquote>
         <blockquote>“... SST and SSH were statistically significant when incorporated into the models, but it allegedly wasn’t the main driver...”</blockquote>
 
-        <p><strong>Calibrated (exact rules used in-app):</strong></p>
-        <ul>
-          <li><strong>Missing SST:</strong> treat ocean as neutral (<code>L_ocean = 0.00</code>).</li>
-          <li><strong>Ocean cap:</strong> <code>L_ocean = clamp(L_sst, -0.06, +0.02)</code>.</li>
-          <li><strong>Cold penalties:</strong> <code>&lt;18°C → -0.06</code>; <code>18–22°C → -0.03</code> (explicit modeling choice).</li>
-          <li><strong>Warm bonuses:</strong> <code>29–31°C → +0.02</code>; <code>28–32°C → +0.01</code> (loosely anchored to the “29–31°C” note).</li>
-        </ul>
-
-        <h3 id="worked-example">Worked examples (inputs → lifts → rating)</h3>
-        <h4>Best case</h4>
-        <pre><code>Assume:
-phaseBoostValue = 1.0 (quarter-phase peak)
-seasonMult = 1.10 (Oct/Nov)
-SST = 30°C → L_sst = +0.02 → L_ocean = +0.02 (cap)
-
-L_total_preSeason  ≈ L_phase + L_overlap_avg + 0.02
-L_total_postSeason = L_total_preSeason × 1.10
-Global clamp allows 5.0/5 only when L_total reaches L_REF = 0.28</code></pre>
-
-        <h4>Cold water</h4>
-        <pre><code>Assume:
-SST = 17°C → L_sst = -0.06 → L_ocean = -0.06
-seasonMult = 1.00 (most months)
-
-Cold penalty can materially lower the rating and supports reaching 1.0/5 in clearly non-viable water (after clamping).</code></pre>
-
-        <h3 id="changelog">Model changelog (Black Marlin)</h3>
-        <ul>
-          <li><strong>2026-01:</strong> Published full transparency page (this page). No changes to scoring logic.</li>
-        </ul>
+        <p><strong>Calibrated:</strong> missing SST is treated as neutral; we apply an ocean cap and cold/warm bands; exact thresholds are proprietary.</p>
       </div>
     </section>
   </main>
