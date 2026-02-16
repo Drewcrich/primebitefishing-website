@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeBite Fishing — Solunar Windows (Baseline) Transparency</title>
-  <meta name="description" content="PrimeBite Fishing — Solunar Windows (Baseline) full transparency: equations, variables, citations, calibration rationale (Major floor 2.0, Minor ceiling 3.0).">
+  <title>PrimeBite Fishing — Solunar Windows (Baseline) Research &amp; Methodology</title>
+  <meta name="description" content="PrimeBite Fishing — Solunar Windows (Baseline): research-backed variables, citations, and methodology. Evidence transparency without proprietary calibration details.">
   <meta name="theme-color" content="#1a1a1a">
-  <link rel="canonical" href="https://primetimefishing.app/baseline">
+  <link rel="canonical" href="https://www.primebitefishing.com/baseline">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -111,10 +111,9 @@
       <nav class="nav">
         <a href="/">Home</a>
         <a href="/#transparency">Transparency</a>
-        <a href="#math">Math</a>
+        <a href="#methodology">Methodology</a>
         <a href="#variables">Variables</a>
-        <a href="#example">Worked example</a>
-        <a href="#changelog">Changelog</a>
+        <a href="#verification">Definitions</a>
       </nav>
     </div>
   </header>
@@ -123,99 +122,37 @@
     <div class="container">
       <span class="pill">PrimeBite Fishing</span>
       <span class="pill">Solunar Windows (Baseline)</span>
-      <span class="pill">Full Transparency</span>
+      <span class="pill">Research &amp; Methodology</span>
 
-      <h1>Solunar Windows (Baseline) — Full Transparency</h1>
-      <p><em>Last updated: 2026-02-04</em></p>
+      <h1>Solunar Windows (Baseline) — Research &amp; Methodology</h1>
+      <p><em>Last updated: 2026-02-15</em></p>
 
       <p>
         This page documents the <strong>Solunar Windows (Baseline)</strong> profile: classic solunar timing only (Major/Minor windows, dawn/dusk overlap, moon phase curve).
         Best for freshwater when your species isn't listed (e.g. bass, crappie, bluegill). It is <strong>not</strong> species-verified.
       </p>
       <p>
-        Below: exact equations, every variable, open-access URLs, verbatim quotes (with page pointers), and what is research-backed vs calibrated.
+        Below: the <strong>variables we use</strong>, open-access citations with verbatim quotes (and page pointers), and what is research-backed vs calibrated. We do not publish proprietary weights, caps, or equations so our ratings remain our own.
       </p>
 
       <div class="toc">
         <strong>On this page</strong>
         <ul>
-          <li><a href="#math">The exact math (Baseline)</a></li>
+          <li><a href="#methodology">How it works (overview)</a></li>
           <li><a href="#variables">Variables (research-backed vs calibrated)</a></li>
-          <li><a href="#calculation-methodology">Calculation methodology</a></li>
-          <li><a href="#verification">Key definitions & verification sources</a></li>
-          <li><a href="#example">Worked example</a></li>
-          <li><a href="#changelog">Model changelog</a></li>
+          <li><a href="#verification">Key definitions &amp; verification sources</a></li>
         </ul>
       </div>
 
-      <h2 id="math">The exact math (Solunar Windows Baseline)</h2>
+      <h2 id="methodology">How it works (overview)</h2>
       <p>
-        Baseline is a <strong>Major + Minor</strong> window rating: each solunar window gets a 1.0–5.0 score via evidence-backed window-scale calibration,
-        and the day score is the duration-weighted average of all window scores.
-      </p>
-
-      <pre><code>// Per-window lift (Baseline)
-L_total = L_base + L_phase + L_overlap
-
-// Window-scale calibration (scale choice; evidence-backed floor/ceiling logic)
-// Major: L_total [0.082, 0.122] → rating [2.0, 5.0] (floor 2.0 — Shaw 2021: Major always a lift)
-// Minor: Piecewise — [0.022, 0.026] → [1.0, 1.3], [0.026, 0.09] → [1.3, 3.0]
-rating = mapBaselineLiftToRating(L_total, windowType)
-
-// Calibrated trust rule (Major-only display gate):
-// In the quarter band (near 1st/3rd quarter), Major ratings are capped at ≤ 4.2 (after display rounding).
-
-// Day rating
-day_rating = duration-weighted average of all window ratings</code></pre>
-
-      <p>
-        <strong>Research-backed:</strong> L_base Major = 0.10 (Shaw 2021: ~10–12% success lift when moon overhead/underfoot). <strong>Calibrated:</strong> L_base Minor, L_phase magnitudes (±0.018), L_overlap max (0.04), and the exact mapping ranges.
+        Baseline is a <strong>Major + Minor</strong> window rating: each solunar window gets a 1.0–5.0 score, and the day score is the duration-weighted average of all window scores.
       </p>
       <p>
-        <strong>Key design choice:</strong> Moon phase (±0.018) is the <strong>dominant driver</strong>; twilight overlap (max 0.04) is secondary.
-      </p>
-
-      <h2 id="calculation-methodology">Calculation methodology</h2>
-      <p>Step-by-step reference for Solunar Windows (Baseline).</p>
-
-      <pre><code>Step 1) Base lift (per window type)
-L_base = 0.10 for Major (moon overhead/underfoot) — research-backed (Shaw 2021)
-L_base = 0.04 for Minor (moonrise/moonset) — calibrated (conservative)
-
-Step 2) Moon phase lift (smooth curve; evidence-direction)
-Use moon phase position (0=new, 0.25/0.75=quarters, 0.5=full):
-- Quarter phases are lowest (down to −0.018)
-- Gibbous phases are higher (up to +0.018; peaks around waxing/waning gibbous)
-- Smooth curve transitions between; no hard steps
-
-Step 3) Dawn/dusk overlap lift
-overlap_fraction = fraction of window inside civil twilight (sun 0° to −6°)
-L_overlap = 0.04 × overlap_fraction   // 0..0.04 (calibrated; direction from Shaw)
-
-Step 4) Total lift
-L_total = L_base + L_phase + L_overlap
-
-Step 5) Window-scale calibration (scale choice)
-Major: rating = 2.0 + 3.0 × (L_total - 0.082) / (0.122 - 0.082)  → [2.0, 5.0]
-Minor: piecewise —
-  if L_total < 0.026: rating = 1.0 + 0.3 × (L_total - 0.022) / (0.026 - 0.022)  → [1.0, 1.3]
-  else: rating = 1.3 + 1.7 × (L_total - 0.026) / (0.09 - 0.026)  → [1.3, 3.0]
-
-Step 5b) Calibrated trust rule (Major-only)
-If moon phase is in the quarter band (near 1st/3rd quarter), Major window ratings are capped at ≤ 4.2 (after display rounding).
-
-Step 6) Day rating
-day_rating = duration-weighted average of all window ratings</code></pre>
-
-      <h3>Window-scale calibration (why Major floor 2.0, Minor ceiling 3.0)</h3>
-      <p>
-        <strong>Major floor = 2.0:</strong> Shaw et al. 2021 found that anglers were ~10–12% more likely to be successful when the moon was overhead or underfoot <em>rather than when neither lunar event occurred</em>. So being in a Major window is always a lift vs no event; we do not map worst Major to 1.0.
+        We combine three kinds of input: <strong>moon position</strong> (overhead/underfoot vs rise/set), <strong>moon phase</strong> (smooth curve: gibbous higher, quarter lower), and <strong>dawn/dusk overlap</strong> (fraction of the window inside civil twilight). Research chooses the drivers; we calibrate their relative importance and how they map onto 1.0–5.0 so the scale is stable and no single input dominates.
       </p>
       <p>
-        <strong>Minor ceiling = 3.0:</strong> We have no open-access PDF that compares Major vs Minor effect size. By caution we cap Minor ratings at 3.0 so we do not present Minor windows as equivalent to the best Major conditions.
-      </p>
-      <p>
-        <strong>Rarity targets (calibrated):</strong> 1.0 Minor ~2.7% of days (~once every 36.5 days); 5.0 Major ~1.8% of days (~once every 56 days).
+        <strong>Major vs Minor:</strong> Shaw et al. 2021 show that moon overhead/underfoot is associated with higher success than when neither event occurs. We treat Major windows as always a lift (we do not map the worst Major down to 1.0). Moonrise/moonset (Minor) has less direct evidence; we keep Minor ratings conservative so we never present them as equivalent to the best Major conditions. Exact scale endpoints and caps are proprietary.
       </p>
 
       <h2 id="variables">Variables (what's research-backed vs calibrated)</h2>
@@ -232,11 +169,11 @@ day_rating = duration-weighted average of all window ratings</code></pre>
         <em>(PDF p.13)</em>
       </blockquote>
 
-      <h3 id="var-moon-minor">Moon position — Minor (L_base = 0.04)</h3>
-      <p><strong>Calibrated:</strong> Moonrise/moonset has less direct evidence than overhead/underfoot; 0.04 is conservative relative to 0.10.</p>
+      <h3 id="var-moon-minor">Moon position — Minor</h3>
+      <p><strong>Calibrated:</strong> Moonrise/moonset has less direct evidence than overhead/underfoot; we weight it conservatively relative to Major.</p>
 
-      <h3 id="var-moon-phase">Moon phase (L_phase ±0.018)</h3>
-      <p><strong>Calibrated (direction from Shaw):</strong> Gibbous highest, quarter lowest in source; we use a smooth phase curve (±0.018) so <strong>moon phase is the dominant driver</strong> over twilight overlap.</p>
+      <h3 id="var-moon-phase">Moon phase</h3>
+      <p><strong>Calibrated (direction from Shaw):</strong> Gibbous highest, quarter lowest in source; we use a smooth phase curve so <strong>moon phase is the dominant driver</strong> over twilight overlap. Exact curve shape and magnitude are proprietary.</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
       <blockquote>
         "The odds of a successful trip were highest during the gibbous phases… and lowest during the quarter phases…"
@@ -244,8 +181,8 @@ day_rating = duration-weighted average of all window ratings</code></pre>
         <em>(PDF p.13)</em>
       </blockquote>
 
-      <h3 id="var-overlap">Dawn/dusk overlap (L_overlap max 0.04)</h3>
-      <p><strong>Calibrated (direction from Shaw):</strong> Lower solar intensity → higher success; we use civil twilight overlap as proxy. Magnitude 0.04 is calibrated to keep twilight <strong>secondary to phase</strong>.</p>
+      <h3 id="var-overlap">Dawn/dusk overlap</h3>
+      <p><strong>Calibrated (direction from Shaw):</strong> Lower solar intensity → higher success; we use civil twilight overlap as proxy. We keep twilight <strong>secondary to phase</strong>; exact magnitude is proprietary.</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
       <blockquote>
         "Mean daily solar radiation had a negative effect on walleye trip success… The observed percent of successful trips tended to increase with decreasing solar intensity …"
@@ -254,15 +191,9 @@ day_rating = duration-weighted average of all window ratings</code></pre>
       </blockquote>
 
       <h3 id="var-window-scale">Window-scale calibration</h3>
-      <p><strong>Evidence-backed + calibrated:</strong> Major floor from Shaw 2021 (Major always a lift vs no event). Minor ceiling by caution (no evidence Minor = best). Scale endpoints calibrated to achieve rarity targets.</p>
-      <p><strong>Current values:</strong></p>
-      <ul>
-        <li>Major: L_total [0.082, 0.122] → rating [2.0, 5.0]</li>
-        <li>Minor: L_total [0.022, 0.026] → [1.0, 1.3]; L_total [0.026, 0.09] → [1.3, 3.0]</li>
-      </ul>
-
-      <h3 id="var-quarter-cap">Major quarter cap (≤ 4.2 in quarter band)</h3>
-      <p><strong>Calibrated (trust rule; not a biological claim):</strong> If moon phase is in the <strong>quarter band</strong> (near 1st/3rd quarter), Major window ratings are capped at <strong>≤ 4.2</strong> (after display rounding). This prevents quarter-phase windows from being “near-perfect” due to overlap alone.</p>
+      <p><strong>Evidence-backed + calibrated:</strong> Major floor from Shaw 2021 (Major always a lift vs no event). Minor ceiling by caution (no evidence Minor = best). Exact mapping from combined lift to 1.0–5.0 is proprietary.</p>
+      <h3 id="var-quarter-cap">Major quarter cap</h3>
+      <p><strong>Calibrated (trust rule; not a biological claim):</strong> If moon phase is in the <strong>quarter band</strong> (near 1st/3rd quarter), we cap Major window ratings so quarter-phase windows are not shown as "near-perfect" due to overlap alone. Exact cap is proprietary.</p>
 
       <h2 id="verification">Key definitions & verification sources</h2>
 
@@ -273,40 +204,6 @@ day_rating = duration-weighted average of all window ratings</code></pre>
         "Morning civil twilight begins when the geometric center of the sun is 6 degrees below the horizon, and ends at sunrise. Evening civil twilight begins at sunset, and ends when the geometric center of the sun is 6 degrees below the horizon."
       </blockquote>
 
-      <h2 id="example">Worked example (inputs → lift → rating)</h2>
-      <p>Example: Major window, no overlap, neutral phase.</p>
-      <ul>
-        <li><strong>Major</strong> window: L_base = 0.10</li>
-        <li><strong>Near-neutral phase</strong> (non-gibbous / non-quarter): L_phase ≈ 0.00</li>
-        <li><strong>No overlap</strong>: L_overlap = 0.00</li>
-        <li><strong>L_total</strong> = 0.10 + 0.00 + 0.00 = 0.10</li>
-        <li><strong>Major mapping:</strong> rating = 2.0 + 3.0 × (0.10 − 0.082) / (0.122 − 0.082) = 2.0 + 3.0 × 0.45 = <strong>3.4/5</strong></li>
-      </ul>
-      <p>Example: Major window, strongest conditions (gibbous peak + strong twilight overlap).</p>
-      <ul>
-        <li>L_base = 0.10, L_phase ≈ +0.018, L_overlap ≈ +0.02 → L_total ≈ 0.138</li>
-        <li>Major: L_total ≥ 0.122 maps to <strong>5.0/5</strong></li>
-      </ul>
-
-      <h2 id="changelog">Model changelog (Solunar Windows Baseline)</h2>
-      <ul>
-        <li><strong>2026-02-04</strong>: Added full transparency disclosure for the Major-quarter “trust rule” cap (Major windows capped at ≤ 4.2 in the quarter band).</li>
-        <li><strong>2026-02-03</strong>: Fine-tuned Major L_MAX from 0.125 to 0.122 to ensure 5.0 is achievable at mid-latitudes. Rarity: 5.0 Major ~1.8% (~once every 56 days).</li>
-        <li><strong>2026-02-02</strong>: Phase dominance recalibration — increased L_phase to ±0.018, reduced L_overlap max to 0.04, so <strong>moon phase is the dominant driver</strong>. Updated scale endpoints: Major [0.082, 0.122], Minor piecewise [0.022, 0.026] → [1.0, 1.3], [0.026, 0.09] → [1.3, 3.0]. Rarity targets: 1.0 Minor ~2.7%, 5.0 Major ~1.8%.</li>
-        <li><strong>2026-01-30</strong>: Published Baseline full transparency page (this page) and linked from app and website.</li>
-        <li><strong>2026-01-30</strong>: Tuned Major 5.0 ceiling to keep "5.0" rare but achievable in more places.</li>
-        <li><strong>2026-02-01</strong>: Evidence-first update: removed "new/full-only 5.0" product gate; replaced discrete illumination bands with a smooth gibbous/quarter curve (phase position).</li>
-        <li><strong>2026-01</strong>: Renamed "General" profile to "Solunar Windows (Baseline)" in UI; internal key <code>general</code> retained.</li>
-        <li><strong>2026-01</strong>: Baseline uses civil twilight overlap (definition-based), L_base Major 0.10 (Shaw 2021), and a phase adjustment (calibrated magnitude).</li>
-      </ul>
-
-      <h2>Canonical doc source</h2>
-      <p>Canonical content lives in the app repository docs (mirrored here for public transparency):</p>
-      <ul>
-        <li><code>docs/GENERAL_RATING_CALCULATION.md</code></li>
-        <li><code>docs/SOLUNAR_BASELINE_VARIABLES_FACTCHECK.md</code></li>
-        <li><code>docs/SOLUNAR_BASELINE_CALCULATION_AND_EVIDENCE.md</code></li>
-      </ul>
 
       <div class="footer">
         PrimeBite Fishing — Transparency pages are living documents. If you spot an error, please report it.
