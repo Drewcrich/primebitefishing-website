@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — PrimeBite Fishing</title>
+    <meta name="description" content="PrimeBite Fishing — Privacy Policy. How we handle your data: local storage, no tracking, no sharing.">
+    <link rel="canonical" href="https://www.primebitefishing.com/privacy">
+    <meta name="theme-color" content="#1a1a1a">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #e0e0e0; background: #1a1a1a; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .header { background: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; }
+        .nav { display: flex; justify-content: center; gap: 2rem; padding: 1rem 0; flex-wrap: wrap; }
+        .nav a { color: #e0e0e0; text-decoration: none; font-weight: 500; }
+        .nav a:hover { color: #4a9eff; }
+        .section { padding: 3rem 0; }
+        .privacy-content h2 { color: #fff; margin-bottom: 1rem; font-size: 2rem; }
+        .privacy-content h3 { color: #4a9eff; margin: 2rem 0 1rem 0; font-size: 1.5rem; }
+        .privacy-content p { margin-bottom: 1rem; color: #b0b0b0; }
+        .privacy-content ul { margin: 1rem 0; padding-left: 2rem; }
+        .privacy-content li { margin-bottom: 0.5rem; color: #b0b0b0; }
+        .privacy-content blockquote { background: #2a2a2a; border-left: 4px solid #4a9eff; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+        .email-link { color: #4a9eff; text-decoration: none; font-weight: 600; }
+        .email-link:hover { text-decoration: underline; }
+        .footer { background: #0f0f0f; padding: 2rem 0; text-align: center; border-top: 1px solid #333; }
+        .footer p { color: #666; margin-bottom: 0.5rem; }
+        .footer a { color: #4a9eff; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="privacy-content">
+                <h2>Privacy Policy</h2>
+                <p><em>Last updated: February 4, 2026</em></p>
+
+                <p>The <strong>PrimeBite Fishing</strong> app is designed to store your fishing data <strong>locally on your device</strong>. We do not run servers for this app, we do not track you, and we do not share your data.</p>
+
+                <h3>What We Collect (On Your Device)</h3>
+                <ul>
+                    <li><strong>Catch Photos (optional)</strong>: References (URIs) to photos you attach to entries.</li>
+                    <li><strong>Fishing Notes</strong>: Text you add to your logbook.</li>
+                    <li><strong>Location Data (optional)</strong>: GPS coordinates when you choose to tag a catch.</li>
+                    <li><strong>Preferences</strong>: Settings like pounds vs. kilograms.</li>
+                    <li><strong>Notification Preferences (optional)</strong>: Settings for forecast notifications, including species selection, rating thresholds, and notification times.</li>
+                </ul>
+
+                <blockquote>
+                    All information above is stored locally on your device. We do not collect it on our servers.
+                </blockquote>
+
+                <h3>Why We Use This Data</h3>
+                <ul>
+                    <li><strong>Logbook</strong>: Save and review your catches.</li>
+                    <li><strong>Optional GPS Tagging</strong>: Remember where a catch happened.</li>
+                    <li><strong>Bite Windows</strong>: Show suggested times using sunrise/sunset and moon phase.</li>
+                    <li><strong>Preferences</strong>: Keep your chosen units and settings.</li>
+                </ul>
+
+                <h3>Permissions</h3>
+                <ul>
+                    <li><strong>Location (Foreground Only, Optional)</strong>: Requested only when you choose to tag a catch location.</li>
+                    <li><strong>Photos/Library (Optional)</strong>: Requested only when you choose to attach a photo.</li>
+                </ul>
+                <p>The app works without granting these permissions.</p>
+
+                <h3>Notifications</h3>
+                <p>The app may send you push notifications for forecast reminders if you enable this feature. Notification preferences (including which species to monitor, rating thresholds, and notification times) are stored locally on your device. You can disable notifications at any time in your device settings or within the app.</p>
+
+                <h3>Online Services We Call</h3>
+                <p><strong>Open-Meteo (Sunrise/Sunset and Weather Data)</strong>: We query Open-Meteo for sunrise/sunset times and weather data (temperature, humidity, wind, precipitation, cloud cover, etc.) using your coordinates and date to improve accuracy. Requests are anonymous. If the network is unavailable, the app uses a local fallback calculation.</p>
+                <p><strong>NOAA CoastWatch ERDDAP (Ocean Data)</strong>: For offshore species forecasts, we query NOAA's CoastWatch ERDDAP service for sea surface temperature (SST) data using your coordinates and date. This is a free, public U.S. government service. Requests are anonymous. NOAA's privacy policy: <a href="https://www.noaa.gov/privacy-policy" class="email-link" target="_blank" rel="noopener noreferrer">https://www.noaa.gov/privacy-policy</a></p>
+                <p><strong>Copernicus Marine Service (Chlorophyll Data)</strong>: For offshore species forecasts, we query the Copernicus Marine Service (via a proxy server) for chlorophyll-a concentration data using your coordinates and date. Requests are anonymous. The proxy server does not store or log any user data. Copernicus privacy policy: <a href="https://marine.copernicus.eu/privacy-policy" class="email-link" target="_blank" rel="noopener noreferrer">https://marine.copernicus.eu/privacy-policy</a></p>
+
+                <h3>Subscription Services</h3>
+                <p><strong>RevenueCat</strong>: We use RevenueCat to manage subscriptions and purchases for our premium features (PrimeBite Pro). RevenueCat may collect:</p>
+                <ul>
+                    <li>Your Apple ID or Google account information (for purchase verification)</li>
+                    <li>Purchase and subscription history</li>
+                    <li>Device identifiers</li>
+                    <li>Subscription status</li>
+                </ul>
+                <p>This data is used solely to manage your subscription and restore purchases. RevenueCat's privacy policy: <a href="https://www.revenuecat.com/privacy" class="email-link" target="_blank" rel="noopener noreferrer">https://www.revenuecat.com/privacy</a></p>
+                <p><strong>Premium Features</strong>: The app offers a premium subscription (PrimeBite Pro) that provides access to extended forecast features. Subscriptions are managed through Apple's App Store or Google Play Store and are subject to their terms and conditions. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</p>
+
+                <h3>Data Sharing and Tracking</h3>
+                <ul>
+                    <li><strong>We do not share</strong> your personal data with third parties.</li>
+                    <li><strong>We do not sell</strong> your data.</li>
+                    <li><strong>We do not track</strong> you across apps or websites.</li>
+                    <li><strong>No analytics or advertising SDKs</strong> are included.</li>
+                </ul>
+
+                <h3>Your Control</h3>
+                <ul>
+                    <li><strong>Export</strong>: Create a JSON backup of your logbook in Settings.</li>
+                    <li><strong>Import</strong>: Restore a JSON backup in Settings.</li>
+                    <li><strong>Delete Individual Entries</strong>: Remove any catch from your logbook.</li>
+                    <li><strong>Delete All Data</strong>: Uninstalling the app removes local data from your device.</li>
+                </ul>
+
+                <h3>Children</h3>
+                <p>This app is intended for general audiences and is <strong>not directed to children under 13</strong>. We do not knowingly collect personal information from children.</p>
+
+                <h3>Security</h3>
+                <p>Your data remains on your device. Avoid sharing exported backups publicly.</p>
+
+                <h3>Contact</h3>
+                <p>Questions or requests? Email <a href="mailto:primebitefishing@gmail.com" class="email-link">primebitefishing@gmail.com</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 PrimeBite Fishing</p>
+            <p>
+                <a href="/">Home</a> |
+                <a href="/privacy">Privacy Policy</a> |
+                <a href="/terms">Terms of Use</a> |
+                <a href="/#contact">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
