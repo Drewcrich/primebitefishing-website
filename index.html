@@ -117,86 +117,6 @@
             background: #357abd;
         }
 
-        /* PrimeBite Pro section */
-        .pro-section {
-            padding: 4rem 0;
-            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
-        }
-
-        .pro-card {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: #1e1e1e;
-            border-radius: 16px;
-            border: 1px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-
-        .pro-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 16px;
-            padding: 2px;
-            background: linear-gradient(135deg, #4a9eff 0%, #66b3ff 50%, #4a9eff 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .pro-card h2 {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            font-size: 1.75rem;
-        }
-
-        .pro-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.5rem 0;
-        }
-
-        .pro-card li {
-            color: #b0b0b0;
-            padding: 0.5rem 0;
-            padding-left: 1.75rem;
-            position: relative;
-        }
-
-        .pro-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #4a9eff;
-            font-weight: bold;
-        }
-
-        .pro-cta {
-            display: block;
-            width: 100%;
-            padding: 14px 24px;
-            background: #4a9eff;
-            color: #fff;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .pro-cta:hover {
-            background: #357abd;
-        }
-
         /* Transparency species grid */
         .transparency-intro {
             max-width: 700px;
@@ -653,12 +573,8 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header .container {
-                flex-wrap: wrap;
-            }
-            .nav-logo img {
-                height: 32px;
-            }
+            .header .container { flex-wrap: wrap; }
+            .nav-logo img { height: 32px; }
             .nav {
                 gap: 1rem;
                 flex-wrap: wrap;
@@ -685,7 +601,7 @@
             </a>
             <nav class="nav">
                 <a href="#features">Features</a>
-                <a href="#pro">Pro</a>
+                <a href="#faq">Pro</a>
                 <a href="#faq">FAQ</a>
                 <a href="#transparency">Transparency</a>
                 <a href="#contact">Contact</a>
@@ -793,23 +709,7 @@
             </div>
         </section>
 
-        <!-- PrimeBite Pro -->
-        <section id="pro" class="pro-section">
-            <div class="container">
-                <div class="pro-card">
-                    <h2>PrimeBite Pro</h2>
-                    <ul>
-                        <li>30-day bite forecast</li>
-                        <li>Best window predictions</li>
-                        <li>Weather-integrated ratings</li>
-                        <li>Customizable notifications</li>
-                    </ul>
-                    <a class="pro-cta" href="https://apps.apple.com/app/id6752902941">Start Free Trial</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
+        <!-- FAQ (Pro link scrolls here) -->
         <section id="faq" class="section">
             <div class="container">
                 <h2>FAQ</h2>
@@ -849,7 +749,6 @@
                         <p>Classic solunar timing for any species. Best when your target isn't listed (e.g. bass, crappie).</p>
                         <a href="/baseline.html">Read Methodology →</a>
                     </div>
-
                     <div class="species-card">
                         <h3>Yellowfin Tuna</h3>
                         <p>Offshore phase + illumination + oceanography. Our reference offshore profile.</p>
@@ -909,7 +808,7 @@
         <div class="container">
             <p>&copy; 2026 PrimeBite Fishing</p>
             <p>
-                <a href="/privacy">Privacy Policy</a> |
+                <a href="/privacy">Privacy Policy</a> | 
                 <a href="/terms">Terms of Use</a>
             </p>
         </div>
