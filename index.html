@@ -116,49 +116,53 @@
             background: #357abd;
         }
 
-        /* Transparency species grid */
+        /* Transparency (compact) */
+        #transparency.section {
+            padding: 2.5rem 0;
+        }
+
+        #transparency .container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
         .transparency-intro {
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
             color: #b0b0b0;
-            line-height: 1.7;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
         }
 
-        .transparency-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .species-card {
-            background: #2a2a2a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 1.25rem;
-        }
-
-        .species-card h3 {
-            color: #fff;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .species-card p {
-            color: #b0b0b0;
-            font-size: 0.9rem;
+        .transparency-cta {
+            color: #e0e0e0;
             line-height: 1.5;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1.25rem;
         }
 
-        .species-card a {
-            color: #4a9eff;
-            font-weight: 600;
-            font-size: 0.9rem;
+        .transparency-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .transparency-pills a {
+            display: inline-block;
+            padding: 0.4rem 0.85rem;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 999px;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            font-weight: 500;
             text-decoration: none;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
         }
 
-        .species-card a:hover {
-            text-decoration: underline;
+        .transparency-pills a:hover {
+            background: #333;
+            border-color: #4a9eff;
+            color: #4a9eff;
         }
 
         /* Hero CTA Section */
@@ -660,9 +664,6 @@
                 gap: 1rem;
                 flex-wrap: wrap;
             }
-            .transparency-grid {
-                grid-template-columns: 1fr;
-            }
 
             .section h2 {
                 font-size: 2rem;
@@ -857,48 +858,17 @@
         <section id="transparency" class="section">
             <div class="container">
                 <h2>Transparency: How Our Bite Logic Works</h2>
-                <p class="transparency-intro">Every rating is built on peer-reviewed, open-access research — not guesswork. We publish the variables, citations, and evidence for each species. Pick a profile below to read the full methodology.</p>
-                <div class="transparency-grid">
-                    <div class="species-card">
-                        <h3>Solunar Windows (Baseline)</h3>
-                        <p>Classic solunar timing for any species. Best when your target isn't listed (e.g. bass, crappie).</p>
-                        <a href="/baseline.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Yellowfin Tuna</h3>
-                        <p>Offshore phase + illumination + oceanography. Our reference offshore profile.</p>
-                        <a href="/yellowfin.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Mahi‑mahi</h3>
-                        <p>Moon phase–driven all‑day rating plus capped ocean block (SST + chlorophyll).</p>
-                        <a href="/mahi.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Bigeye Tuna</h3>
-                        <p>Moon phase and oceanographic data (SST, chlorophyll) for all‑day predictions.</p>
-                        <a href="/bigeye.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Black Marlin</h3>
-                        <p>Quarter‑phase peaks, GBR‑anchored seasonality, and SST modifier.</p>
-                        <a href="/blackmarlin.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Walleye</h3>
-                        <p>Freshwater Major/Minor windows with moon position and low‑light evidence.</p>
-                        <a href="/walleye.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Muskie</h3>
-                        <p>Majors-only windows, new + waning gibbous peak, strong dusk dominance.</p>
-                        <a href="/muskie.html">Read Methodology →</a>
-                    </div>
-                    <div class="species-card">
-                        <h3>Northern Pike</h3>
-                        <p>All‑day rating: new/full moon, wind, and dusk — no bite-time windows.</p>
-                        <a href="/pike.html">Read Methodology →</a>
-                    </div>
+                <p class="transparency-intro">Every rating is built on peer-reviewed, open-access research — not guesswork.</p>
+                <p class="transparency-cta">We publish the complete methodology for all 8 species. Pick a species to read the full research and citations.</p>
+                <div class="transparency-pills">
+                    <a href="/baseline.html">Solunar (Baseline)</a>
+                    <a href="/yellowfin.html">Yellowfin Tuna</a>
+                    <a href="/mahi.html">Mahi‑mahi</a>
+                    <a href="/bigeye.html">Bigeye Tuna</a>
+                    <a href="/blackmarlin.html">Black Marlin</a>
+                    <a href="/walleye.html">Walleye</a>
+                    <a href="/muskie.html">Muskie</a>
+                    <a href="/pike.html">Northern Pike</a>
                 </div>
             </div>
         </section>
