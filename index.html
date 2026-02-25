@@ -67,25 +67,6 @@
             border-bottom: 1px solid #333;
         }
 
-        .header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .nav-logo img {
-            display: block;
-            height: 38px;
-            width: auto;
-        }
-
         .nav {
             display: flex;
             justify-content: center;
@@ -509,9 +490,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-logo img {
-                height: 32px;
-            }
             .nav {
                 gap: 1rem;
                 flex-wrap: wrap;
@@ -530,9 +508,6 @@
 <body>
     <header class="header">
         <div class="container">
-            <a class="nav-logo" href="/" aria-label="PrimeBite Fishing — Home">
-                <img src="images/logo.png" alt="PrimeBite Fishing" height="38">
-            </a>
             <nav class="nav">
                 <a href="#showcase">Screenshots</a>
                 <a href="#features">Features</a>
