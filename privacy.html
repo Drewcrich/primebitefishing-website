@@ -12,9 +12,14 @@
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #e0e0e0; background: #1a1a1a; }
         .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
         .header { background: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; }
-        .nav { display: flex; justify-content: center; gap: 2rem; padding: 1rem 0; flex-wrap: wrap; }
+        .header .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .nav-logo { flex-shrink: 0; }
+        .nav-logo img { display: block; height: 38px; width: auto; }
+        .nav { display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; flex-wrap: wrap; }
         .nav a { color: #e0e0e0; text-decoration: none; font-weight: 500; }
         .nav a:hover { color: #4a9eff; }
+        .nav-download { display: inline-block; padding: 10px 20px; background: #4a9eff; color: #fff; font-weight: 600; text-decoration: none; border-radius: 8px; }
+        .nav-download:hover { background: #357abd; }
         .section { padding: 3rem 0; }
         .privacy-content h2 { color: #fff; margin-bottom: 1rem; font-size: 2rem; }
         .privacy-content h3 { color: #4a9eff; margin: 2rem 0 1rem 0; font-size: 1.5rem; }
@@ -33,12 +38,17 @@
 <body>
     <header class="header">
         <div class="container">
+            <a class="nav-logo" href="/" aria-label="PrimeBite Fishing — Home">
+                <img src="/images/logo.png" alt="PrimeBite Fishing" height="38">
+            </a>
             <nav class="nav">
-                <a href="/">Home</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
+                <a href="/#features">Features</a>
+                <a href="/#pro">Pro</a>
+                <a href="/#faq">FAQ</a>
+                <a href="/#transparency">Transparency</a>
                 <a href="/#contact">Contact</a>
             </nav>
+            <a class="nav-download" href="https://apps.apple.com/app/id6752902941">Download</a>
         </div>
     </header>
 

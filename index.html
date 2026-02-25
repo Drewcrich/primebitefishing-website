@@ -67,10 +67,27 @@
             border-bottom: 1px solid #333;
         }
 
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            flex-shrink: 0;
+        }
+
+        .nav-logo img {
+            display: block;
+            height: 38px;
+            width: auto;
+        }
+
         .nav {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            align-items: center;
+            gap: 1.5rem;
             padding: 1rem 0;
         }
 
@@ -83,6 +100,146 @@
 
         .nav a:hover {
             color: #4a9eff;
+        }
+
+        .nav-download {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4a9eff;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-download:hover {
+            background: #357abd;
+        }
+
+        /* PrimeBite Pro section */
+        .pro-section {
+            padding: 4rem 0;
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+        }
+
+        .pro-card {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #1e1e1e;
+            border-radius: 16px;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .pro-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, #4a9eff 0%, #66b3ff 50%, #4a9eff 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .pro-card h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+        }
+
+        .pro-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .pro-card li {
+            color: #b0b0b0;
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+        }
+
+        .pro-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4a9eff;
+            font-weight: bold;
+        }
+
+        .pro-cta {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            background: #4a9eff;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .pro-cta:hover {
+            background: #357abd;
+        }
+
+        /* Transparency species grid */
+        .transparency-intro {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: #b0b0b0;
+            line-height: 1.7;
+        }
+
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .species-card {
+            background: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .species-card h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .species-card p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .species-card a {
+            color: #4a9eff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .species-card a:hover {
+            text-decoration: underline;
         }
 
         /* Hero CTA Section */
@@ -496,9 +653,18 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .nav-logo img {
+                height: 32px;
+            }
             .nav {
                 gap: 1rem;
                 flex-wrap: wrap;
+            }
+            .transparency-grid {
+                grid-template-columns: 1fr;
             }
 
             .section h2 {
@@ -514,15 +680,17 @@
 <body>
     <header class="header">
         <div class="container">
+            <a class="nav-logo" href="/" aria-label="PrimeBite Fishing — Home">
+                <img src="images/logo.png" alt="PrimeBite Fishing" height="38">
+            </a>
             <nav class="nav">
-                <a href="#showcase">Screenshots</a>
                 <a href="#features">Features</a>
+                <a href="#pro">Pro</a>
                 <a href="#faq">FAQ</a>
                 <a href="#transparency">Transparency</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
                 <a href="#contact">Contact</a>
             </nav>
+            <a class="nav-download" href="https://apps.apple.com/app/id6752902941">Download</a>
         </div>
     </header>
 
@@ -625,6 +793,22 @@
             </div>
         </section>
 
+        <!-- PrimeBite Pro -->
+        <section id="pro" class="pro-section">
+            <div class="container">
+                <div class="pro-card">
+                    <h2>PrimeBite Pro</h2>
+                    <ul>
+                        <li>30-day bite forecast</li>
+                        <li>Best window predictions</li>
+                        <li>Weather-integrated ratings</li>
+                        <li>Customizable notifications</li>
+                    </ul>
+                    <a class="pro-cta" href="https://apps.apple.com/app/id6752902941">Start Free Trial</a>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ -->
         <section id="faq" class="section">
             <div class="container">
@@ -658,102 +842,49 @@
         <section id="transparency" class="section">
             <div class="container">
                 <h2>Transparency: How Our Bite Logic Works</h2>
-                <div class="privacy-content">
-                    <p>PrimeBite documents the research and variables behind our bite ratings. All our algorithms are based on peer-reviewed, open-access research. For each species and the baseline profile we publish variables we use, citations with quotes, and what is research-backed vs calibrated. Exact weights, equations, and worked examples are proprietary.</p>
+                <p class="transparency-intro">Every rating is built on peer-reviewed, open-access research — not guesswork. We publish the variables, citations, and evidence for each species. Pick a profile below to read the full methodology.</p>
+                <div class="transparency-grid">
+                    <div class="species-card">
+                        <h3>Solunar Windows (Baseline)</h3>
+                        <p>Classic solunar timing for any species. Best when your target isn't listed (e.g. bass, crappie).</p>
+                        <a href="/baseline.html">Read Methodology →</a>
+                    </div>
 
-                    <h3>Solunar Windows (Baseline)</h3>
-                    <p>
-                        Baseline is classic solunar timing only (Major/Minor windows, dawn/dusk overlap, moon-illumination tweak). Best for freshwater when your species isn't listed (e.g. bass, crappie, bluegill). Not species-verified.
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/baseline.html" style="color: #4a9eff;">Solunar Windows (Baseline) — Research &amp; Methodology (Website)</a></strong>
-                            — Variables, citations, and evidence rationale. Exact calibration values are proprietary.
-                        </li>
-                    </ul>
-
-                    <h3>Yellowfin Tuna</h3>
-                    <p>
-                        Yellowfin is our reference offshore profile (phase + illumination + oceanography with anti-double-counting caps).
-                        We publish a dedicated research &amp; methodology page (variables, citations, and evidence).
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/yellowfin.html" style="color: #4a9eff;">Yellowfin Tuna — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
-                    
-                    <h3>Mahi‑mahi</h3>
-                    <p>
-                        Mahi uses an offshore all‑day rating driven by moon phase (shared Yellowfin/Mahi curve), plus a small capped ocean block (SST + chlorophyll‑a).
-                        We publish a dedicated research &amp; methodology page (variables, citations, and evidence).
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/mahi.html" style="color: #4a9eff;">Mahi‑mahi — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
-
-                    <h3>Big Eye Tuna</h3>
-                    <p>Our Big Eye Tuna rating system uses moon phase patterns and oceanographic data (sea surface temperature and chlorophyll-a) to predict activity.</p>
-                    <ul>
-                        <li>
-                            <strong><a href="/bigeye.html" style="color: #4a9eff;">Bigeye Tuna — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
-
-                    <h3>Black Marlin</h3>
-                    <p>
-                        Black Marlin (v1) is an offshore all‑day rating driven by moon phase (quarter‑phase peaks), a modest seasonality multiplier (GBR‑anchored, applied globally as a modeling choice),
-                        and an SST-only ocean modifier (capped; includes a conservative cold out‑of‑habitat penalty).
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/blackmarlin.html" style="color: #4a9eff;">Black Marlin — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
-
-                    <h3>Walleye (Freshwater)</h3>
-                    <p>
-                        Walleye (v1) is a freshwater Major/Minor-window rating anchored to open-access evidence for moon position (overhead/underfoot),
-                        gibbous-over-quarter phase ordering, and crepuscular / low-light effects. The exact lift sizes and seasonality cap are calibrated to produce stable 1.0–5.0 ratings.
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/walleye.html" style="color: #4a9eff;">Walleye — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
-
-                    <h3>Muskie (Freshwater)</h3>
-                    <p>
-                        Muskie (v1) is a freshwater Majors-only window rating (moon overhead/underfoot) anchored to open-access evidence for
-                        new + waning gibbous phase ordering and strong dusk dominance. The exact lift sizes are calibrated, and Major-window ratings use
-                        percentile mapping so 1.0 and 5.0 are equally rare (commercial/UI scale mapping; raw-model math remains available).
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/muskie.html" style="color: #4a9eff;">Muskie — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
-
-                    <h3>Northern Pike (Freshwater)</h3>
-                    <p>
-                        Northern Pike (v1) is a freshwater <strong>all‑day</strong> rating (no Major/Minor “bite times”) anchored to open-access evidence that
-                        catch rates are higher around <strong>new + full</strong> moons, at <strong>higher wind speeds</strong> (within the observed range), and <strong>during dusk</strong>.
-                        The curve shapes and magnitudes are calibrated to produce a stable 1.0–5.0 score.
-                    </p>
-                    <ul>
-                        <li>
-                            <strong><a href="/pike.html" style="color: #4a9eff;">Northern Pike — Research &amp; Methodology (Website)</a></strong>
-                            — Variables we use, citations with quotes, and what's research-backed vs calibrated. Exact weights and equations are proprietary.
-                        </li>
-                    </ul>
+                    <div class="species-card">
+                        <h3>Yellowfin Tuna</h3>
+                        <p>Offshore phase + illumination + oceanography. Our reference offshore profile.</p>
+                        <a href="/yellowfin.html">Read Methodology →</a>
+                    </div>
+                    <div class="species-card">
+                        <h3>Mahi‑mahi</h3>
+                        <p>Moon phase–driven all‑day rating plus capped ocean block (SST + chlorophyll).</p>
+                        <a href="/mahi.html">Read Methodology →</a>
+                    </div>
+                    <div class="species-card">
+                        <h3>Bigeye Tuna</h3>
+                        <p>Moon phase and oceanographic data (SST, chlorophyll) for all‑day predictions.</p>
+                        <a href="/bigeye.html">Read Methodology →</a>
+                    </div>
+                    <div class="species-card">
+                        <h3>Black Marlin</h3>
+                        <p>Quarter‑phase peaks, GBR‑anchored seasonality, and SST modifier.</p>
+                        <a href="/blackmarlin.html">Read Methodology →</a>
+                    </div>
+                    <div class="species-card">
+                        <h3>Walleye</h3>
+                        <p>Freshwater Major/Minor windows with moon position and low‑light evidence.</p>
+                        <a href="/walleye.html">Read Methodology →</a>
+                    </div>
+                    <div class="species-card">
+                        <h3>Muskie</h3>
+                        <p>Majors-only windows, new + waning gibbous peak, strong dusk dominance.</p>
+                        <a href="/muskie.html">Read Methodology →</a>
+                    </div>
+                    <div class="species-card">
+                        <h3>Northern Pike</h3>
+                        <p>All‑day rating: new/full moon, wind, and dusk — no bite-time windows.</p>
+                        <a href="/pike.html">Read Methodology →</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -778,7 +909,7 @@
         <div class="container">
             <p>&copy; 2026 PrimeBite Fishing</p>
             <p>
-                <a href="/privacy">Privacy Policy</a> | 
+                <a href="/privacy">Privacy Policy</a> |
                 <a href="/terms">Terms of Use</a>
             </p>
         </div>
