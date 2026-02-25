@@ -497,6 +497,59 @@
             text-decoration: underline;
         }
 
+        /* Trust bar */
+        .trust-bar {
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            border-top: 1px solid #252525;
+            border-bottom: 1px solid #252525;
+            padding: 2rem 1.5rem;
+        }
+
+        .trust-bar .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trust-bar-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem 2rem;
+            align-items: center;
+        }
+
+        .trust-bar-item {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            line-height: 1.35;
+        }
+
+        .trust-bar-item span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.35rem;
+        }
+
+        @media (max-width: 768px) {
+            .trust-bar {
+                padding: 1.75rem 1rem;
+            }
+
+            .trust-bar-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.25rem 1rem;
+            }
+
+            .trust-bar-item {
+                font-size: 0.8rem;
+            }
+
+            .trust-bar-item span {
+                font-size: 1.35rem;
+            }
+        }
+
         /* Screenshot showcase */
         .showcase {
             padding: 4rem 0;
@@ -654,6 +707,30 @@
                 <div class="hero-phone">
                     <div class="hero-phone-mockup">
                         <img src="images/solunar-dashboard.png" alt="PrimeBite Solunar Dashboard on iPhone" width="296" height="auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust bar -->
+        <section class="trust-bar" aria-label="Why PrimeBite">
+            <div class="container">
+                <div class="trust-bar-grid">
+                    <div class="trust-bar-item">
+                        <span aria-hidden="true">🔬</span>
+                        Built on Peer-Reviewed Solunar Research
+                    </div>
+                    <div class="trust-bar-item">
+                        <span aria-hidden="true">🐟</span>
+                        8 Species-Specific Bite Profiles
+                    </div>
+                    <div class="trust-bar-item">
+                        <span aria-hidden="true">📡</span>
+                        Works 100% Offline
+                    </div>
+                    <div class="trust-bar-item">
+                        <span aria-hidden="true">🔒</span>
+                        Zero Tracking. Zero Ads.
                     </div>
                 </div>
             </div>
