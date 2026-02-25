@@ -291,6 +291,109 @@
             text-decoration: underline;
         }
 
+        /* Screenshot showcase */
+        .showcase {
+            padding: 4rem 0;
+            background: #111;
+        }
+
+        .showcase .container {
+            max-width: 1200px;
+        }
+
+        .showcase h2 {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .showcase-item {
+            text-align: center;
+        }
+
+        .device-mockup {
+            position: relative;
+            width: 100%;
+            max-width: 260px;
+            margin: 0 auto 1rem;
+            background: #1a1a1a;
+            border-radius: 36px;
+            padding: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px #333;
+        }
+
+        .device-mockup::before {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 22px;
+            margin: 0 auto 8px;
+            background: #0a0a0a;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .device-mockup img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 26px;
+            background: #000;
+        }
+
+        .showcase-caption {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 0.25rem;
+        }
+
+        .showcase-item p:last-child {
+            font-size: 0.85rem;
+            color: #888;
+            margin: 0;
+        }
+
+        /* Mobile: horizontal scrollable carousel */
+        @media (max-width: 768px) {
+            .showcase h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .showcase-grid {
+                display: flex;
+                grid-template-columns: unset;
+                gap: 0;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 20px 1rem;
+                margin: 0 -20px;
+            }
+
+            .showcase-item {
+                flex: 0 0 280px;
+                scroll-snap-align: center;
+                padding: 0 0.5rem;
+                text-align: center;
+            }
+
+            .device-mockup {
+                max-width: 240px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav {
@@ -312,6 +415,7 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
+                <a href="#showcase">Screenshots</a>
                 <a href="#features">Features</a>
                 <a href="#faq">FAQ</a>
                 <a href="#transparency">Transparency</a>
@@ -331,6 +435,43 @@
                 <a class="hero-btn" href="https://apps.apple.com/app/id6752902941" aria-label="Get the iPhone app on the App Store">
                     Get the iPhone app
                 </a>
+            </div>
+        </section>
+
+        <!-- App screenshot showcase -->
+        <section id="showcase" class="showcase">
+            <div class="container">
+                <h2>See the app in action</h2>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <div class="device-mockup">
+                            <img src="images/solunar-dashboard.png" alt="Solunar Dashboard — bite windows and day rating" width="260" height="auto">
+                        </div>
+                        <p class="showcase-caption">Solunar Dashboard</p>
+                        <p>Today’s bite windows and day rating</p>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="device-mockup">
+                            <img src="images/species-detail.png" alt="Species Detail — Yellowfin Tuna rating and variables" width="260" height="auto">
+                        </div>
+                        <p class="showcase-caption">Species Detail</p>
+                        <p>Per-species ratings and methodology</p>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="device-mockup">
+                            <img src="images/forecast-calendar.png" alt="Forecast Calendar — 30-day bite forecast" width="260" height="auto">
+                        </div>
+                        <p class="showcase-caption">Forecast Calendar</p>
+                        <p>Plan ahead with the 30-day forecast</p>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="device-mockup">
+                            <img src="images/logbook.png" alt="Logbook — log catches with notes and photos" width="260" height="auto">
+                        </div>
+                        <p class="showcase-caption">Logbook</p>
+                        <p>Log catches with notes and optional photos</p>
+                    </div>
+                </div>
             </div>
         </section>
 
