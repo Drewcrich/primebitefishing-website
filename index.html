@@ -70,8 +70,17 @@
         .header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             gap: 1rem;
+        }
+
+        .nav-spacer {
+            flex: 1;
+        }
+
+        .nav-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .nav {
@@ -585,6 +594,7 @@
 <body>
     <header class="header">
         <div class="container">
+            <div class="nav-spacer"></div>
             <nav class="nav">
                 <a href="#features">Features</a>
                 <a href="#faq">Pro</a>
@@ -592,7 +602,9 @@
                 <a href="#transparency">Transparency</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <a class="nav-download" href="https://apps.apple.com/app/id6752902941">Download</a>
+            <div class="nav-right">
+                <a class="nav-download" href="https://apps.apple.com/app/id6752902941">Download</a>
+            </div>
         </div>
     </header>
 
