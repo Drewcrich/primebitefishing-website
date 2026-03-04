@@ -177,7 +177,7 @@
         <em>(PDF p.13)</em>
       </blockquote>
 
-      <h3 id="var-low-light">Low-light / crepuscular timing (L_time)</h3>
+      <h3 id="var-low-light">Low-light / crepuscular timing</h3>
       <p><strong>Research-backed:</strong> dusk and dawn are better than day; lower light improves success.</p>
       <p><strong>Calibrated:</strong> the maximum lift size and the exact dawn/dusk window used for scoring (see verification section for the window definition source).</p>
       <p><strong>Source (open access):</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF (printable)</a></p>
@@ -192,7 +192,7 @@
         <em>(PDF p.25)</em>
       </blockquote>
 
-      <h3 id="var-cloud-cover">Cloud cover (proxy for solar radiation) (part of L_time)</h3>
+      <h3 id="var-cloud-cover">Cloud cover (proxy for solar radiation)</h3>
       <p><strong>Research-backed:</strong> mean daily solar radiation negatively affects trip success; authors treat solar radiation as influenced by cloud cover.</p>
       <p><strong>Calibrated:</strong> mapping cloud cover % to a small lift (we keep it conservative).</p>
       <p><strong>Implementation note:</strong> PrimeBite uses Open‑Meteo cloud cover (%) as a proxy for light intensity, using a <strong>daytime average</strong> (≈9am–3pm local) when available.</p>
@@ -208,12 +208,12 @@
         <em>(PDF p.5)</em>
       </blockquote>
 
-      <h3 id="var-overlap">Dawn/dusk overlap with bite windows (L_overlap)</h3>
+      <h3 id="var-overlap">Dawn/dusk overlap with bite windows</h3>
       <p><strong>Research-backed:</strong> low-light periods improve success (Shaw 2021), so overlap with dawn/dusk is meaningful.</p>
       <p><strong>Calibrated:</strong> how overlap maps into points; magnitude and ceiling are proprietary.</p>
       <p><strong>Verification source:</strong> civil twilight definition (NOAA/NWS) is used so “dawn/dusk overlap” is a standard astronomical window.</p>
 
-      <h3 id="var-seasonality">Seasonality multiplier (seasonMult)</h3>
+      <h3 id="var-seasonality">Seasonality multiplier</h3>
       <p><strong>Research-backed:</strong> Walleye vulnerability/effort/catch commonly peak in spring and shift through the year in open-access regional sources.</p>
       <p><strong>Calibrated:</strong> monthly multipliers and a global cap keep seasonality meaningful but not dominant; exact values are proprietary.</p>
       <p><strong>Sources (open PDFs):</strong></p>

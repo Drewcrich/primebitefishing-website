@@ -164,10 +164,10 @@
         <strong>Calibrated</strong> means we chose the exact thresholds/weights/caps to make a stable 1–5 score.
       </p>
 
-      <h3 id="var-moon-phase">Moon phase (L_phase)</h3>
+      <h3 id="var-moon-phase">Moon phase</h3>
       <p><strong>Research-backed:</strong> Pike catch rates peak around <strong>full and new</strong> moon.</p>
       <p><strong>Calibrated:</strong> the exact curve shape and magnitude used to map that pattern into a 1.0–5.0 score.</p>
-      <p><strong>Implementation:</strong> <code>phaseModel: 'pike-newfull'</code> (phase-position model; peaks at new/full), <code>phaseWeight</code> (calibrated).</p>
+      <p><strong>Implementation:</strong> a smooth new/full peak curve is used and scaled into the 1.0–5.0 score (exact weighting is proprietary).</p>
       <p><strong>Source (open access):</strong> <a href="https://www.agrar.hu-berlin.de/de/institut/departments/dntw/jp_bfm/publ_html/kuparinen-et-al-2010/@@download/file/kuparinenetal_fishres_2010.pdf" target="_blank" rel="noopener noreferrer">Kuparinen et al. 2010 — Fisheries Research (PDF)</a></p>
       <blockquote>
         “Catch rates of pike were significantly increased … around full and new moon …”
@@ -175,7 +175,7 @@
         <em>(printed p.111 Abstract; see app repo extracts: <code>docs/_pdf_cache/pike/extracts/_extract_Kuparinen_2010_p1.txt</code>)</em>
       </blockquote>
 
-      <h3 id="var-wind">Wind speed (L_weather)</h3>
+      <h3 id="var-wind">Wind speed</h3>
       <p><strong>Research-backed:</strong> within the observed range in Kuparinen (2010), higher wind speed is associated with increased catch rates.</p>
       <p><strong>Calibrated:</strong> the exact mapping from mph → score adjustment (we use a simple monotonic boost capped at the observed range; no penalty without evidence).</p>
       <p><strong>Implementation:</strong> wind adjustment capped at the observed range from the study (exact mapping proprietary).</p>
@@ -186,7 +186,7 @@
         <em>(printed p.111 Abstract; see app repo extracts: <code>docs/_pdf_cache/pike/extracts/_extract_Kuparinen_2010_p1.txt</code>)</em>
       </blockquote>
 
-      <h3 id="var-dusk">Dusk / civil twilight (L_dusk)</h3>
+      <h3 id="var-dusk">Dusk / civil twilight</h3>
       <p><strong>Research-backed:</strong> Pike catch rates are higher <strong>during dusk</strong>.</p>
       <p><strong>Calibrated:</strong> because Pike is an <em>all-day</em> rating (no specific bite-time windows), we apply dusk as a <strong>small all-day calibration</strong> based on evening civil twilight duration.</p>
       <p><strong>Implementation (all-day calibration):</strong> compute evening civil twilight minutes, then a small dusk boost is applied (exact formula proprietary).</p>

@@ -147,17 +147,17 @@
         <h2 id="variables">Variables (what's research-backed vs calibrated)</h2>
         <p><strong>Research-backed</strong> means the driver/pattern/mechanism is supported by open-access sources. <strong>Calibrated</strong> means we chose the exact curve shape/thresholds/weights/caps to produce a stable 1.0–5.0 score and to avoid overclaiming from region- or gear-specific studies.</p>
 
-        <h4 id="var-moon-phase">Moon phase (L_phase)</h4>
+        <h4 id="var-moon-phase">Moon phase</h4>
         <p><strong>Research-backed:</strong> an open-access offshore tournament summary reports Dolphinfish (Mahi‑mahi) catch-rate peak at <strong>First Quarter</strong>.</p>
         <p><strong>Source (open PDF):</strong> <a href="https://ncseagrant.ncsu.edu/coastwatch/wp-content/uploads/sites/13/2020/12/WinterHookLineScience.pdf" target="_blank" rel="noopener noreferrer">NC Sea Grant — Hook, Line &amp; Science (Winter 2020)</a></p>
         <blockquote>“Scientists found a relationship between catch rates and lunar phase for 5 of the 8 species as shown here…<br>Dolphinfish first quarter” <span class="muted">(PDF p.2)</span></blockquote>
 
         <p><strong>Calibrated:</strong> we use a smooth shared phase curve (First Quarter peak) and scale it into a lift; exact weight and scale are proprietary.</p>
 
-        <h3 id="var-overlap">Average dawn/dusk opportunity (L_overlap_avg) — modeling assumption</h3>
+        <h3 id="var-overlap">Average dawn/dusk opportunity — modeling assumption</h3>
         <p>Offshore day ratings don’t use time windows. For non‑Yellowfin offshore species we include a small fixed overlap lift so overlap isn’t implicitly treated as 0 in a 24‑hour score. This is a <strong>modeling/UX assumption</strong> (not claimed as a research effect size).</p>
 
-        <h3 id="var-night">Night availability (L_time_avg)</h3>
+        <h3 id="var-night">Night availability</h3>
         <p><strong>Research-backed (context):</strong> Mahi spawning events are predicted to occur at night and chiefly at the new moon phase (context; not a universal CPUE effect-size study).</p>
         <p><strong>Source (open access):</strong> <a href="https://www.frontiersin.org/articles/10.3389/fmars.2021.626082/pdf" target="_blank" rel="noopener noreferrer">Schlenker et al. 2021 — Frontiers in Marine Science (PDF)</a></p>
         <p><strong>Calibrated:</strong> we translate diel context into a small fixed all-day average lift; exact value is proprietary.</p>
@@ -165,7 +165,7 @@
         <h2 id="environmental-variables">Environmental variables (verification)</h2>
         <p>This section documents <strong>what the papers say</strong> (verbatim quotes with page pointers). How we map that into a stable rating uses proprietary thresholds and caps.</p>
 
-        <h4 id="var-oceanography">Oceanography (SST + chlorophyll‑a) (L_ocean)</h4>
+        <h4 id="var-oceanography">Oceanography (SST + chlorophyll‑a)</h4>
         <p><strong>Research-backed:</strong> multiple open-access studies show SST and chlorophyll-a covary with dolphinfish/mahi CPUE/habitat, but ranges are region-dependent.</p>
 
         <p><strong>SST anchors:</strong></p>
