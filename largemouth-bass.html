@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimeBite Fishing — Largemouth Bass Research &amp; Methodology</title>
+  <meta name="description" content="PrimeBite Fishing — Largemouth Bass: research-backed variables, citations, and methodology. Evidence transparency for dawn/dusk, wind, temperature, seasonality, and moon phase drivers.">
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="canonical" href="https://www.primebitefishing.com/largemouth-bass">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #e0e0e0; background: #1a1a1a; }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    .header { background: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; }
+    .nav { display: flex; justify-content: center; gap: 1.25rem; padding: 1rem 0; flex-wrap: wrap; }
+    .nav a { color: #e0e0e0; text-decoration: none; font-weight: 600; }
+    .nav a:hover { color: #4a9eff; }
+    .section { padding: 44px 0; }
+    h1 { font-size: 2rem; line-height: 1.2; color: #fff; margin-bottom: 10px; }
+    h2 { font-size: 1.6rem; color: #fff; margin: 28px 0 12px; }
+    h3 { font-size: 1.2rem; color: #4a9eff; margin: 20px 0 10px; }
+    p { margin-bottom: 12px; color: #b0b0b0; }
+    ul { margin: 8px 0 16px 20px; color: #b0b0b0; }
+    li { margin-bottom: 6px; }
+    a { color: #4a9eff; }
+    pre { background: #121212; border: 1px solid #333; padding: 12px; border-radius: 8px; overflow-x: auto; margin: 10px 0 16px; color: #e0e0e0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    blockquote { background: #2a2a2a; border-left: 4px solid #4a9eff; padding: 12px; margin: 10px 0 16px; border-radius: 6px; color: #e0e0e0; }
+    .pill { display: inline-block; font-size: 12px; padding: 4px 10px; border: 1px solid #333; border-radius: 999px; margin-right: 8px; color: #b0b0b0; background: #202020; }
+    .toc { margin: 14px 0 22px 0; padding: 14px; border: 1px solid #333; border-radius: 10px; background: rgba(255,255,255,0.03); color: #b0b0b0; }
+    .toc strong { color: #e0e0e0; }
+    .footer { border-top: 1px solid #333; padding: 20px 0; color: #666; text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; }
+    th, td { border: 1px solid #333; padding: 8px 12px; text-align: left; color: #b0b0b0; }
+    th { background: #202020; color: #e0e0e0; font-weight: 600; }
+    .tag-research { color: #4ade80; font-weight: 600; }
+    .tag-calibrated { color: #facc15; font-weight: 600; }
+    .tag-excluded { color: #f87171; font-weight: 600; }
+    .print-button { position: fixed; bottom: 24px; right: 24px; background: #4a9eff; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3); z-index: 1000; }
+    .print-button:hover { background: #3a8eef; transform: translateY(-2px); }
+    @media print { .header, .print-button { display: none; } body { background: #fff; color: #000; } a { color: #000; text-decoration: underline; } pre, blockquote { page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#transparency">Transparency</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#variables">Variables</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <span class="pill">PrimeBite Fishing</span>
+      <span class="pill">Largemouth Bass</span>
+      <span class="pill">Research &amp; Methodology</span>
+
+      <h1>Largemouth Bass — Research &amp; Methodology</h1>
+      <p><em>Last updated: 2026-03-12</em></p>
+      <p>This page documents the current live Largemouth Bass profile, the open-access URLs behind each driver, verbatim quotes, and what is research-backed vs calibrated. We keep proprietary calibration details private.</p>
+
+      <div class="toc">
+        <strong>On this page</strong>
+        <ul>
+          <li><a href="#methodology">How it works (overview)</a></li>
+          <li><a href="#limitations">Study limitations</a></li>
+          <li><a href="#variables">Variables (research-backed vs calibrated vs excluded)</a></li>
+          <li><a href="#sources">Full source list</a></li>
+          <li><a href="#changelog">Changelog</a></li>
+        </ul>
+      </div>
+
+      <!-- METHODOLOGY -->
+      <h2 id="methodology">How It Works</h2>
+      <p>The Largemouth Bass profile uses the current Bass v2 structure: a <strong>day baseline</strong> plus an <strong>hourly activity curve</strong>. Unlike Walleye and Muskie (which use solunar window positions), Bass ratings are driven by environmental conditions: dawn/dusk timing, wind speed, water temperature, seasonality, and a small moon phase effect.</p>
+
+      <h3>Rating Structure</h3>
+      <ul>
+        <li><strong>Day baseline (1.0–5.0):</strong> Represents the broader day setup before the exact hour is applied. It comes from seasonality, water temperature, moon phase, and a small built-in starting day level.</li>
+        <li><strong>Hourly activity curve:</strong> Shows how the rating changes throughout the day after dawn/dusk timing and hourly wind move the score up or down. Peaks are typically near dawn and dusk, with softer midday hours.</li>
+        <li><strong>Compact app headline:</strong> The single Bass headline number in the app is the best contiguous 2-hour average, not a simple all-day average.</li>
+        <li><strong>Best Times:</strong> Identifies the strongest windows from the hourly curve, typically around Dawn and Dusk.</li>
+      </ul>
+
+      <h3>What Drives the Rating</h3>
+      <ul>
+        <li><strong>Dawn/dusk proximity</strong> — Primary driver. Bass are most active near sunrise and sunset.</li>
+        <li><strong>Wind speed</strong> — Quadratic dome: optimal around 12 km/h (~7.5 mph). Both calm and high wind reduce catch rates.</li>
+        <li><strong>Water temperature</strong> — Dome: optimal 20–24°C (68–75°F). Estimated from 7-day air temperature history.</li>
+        <li><strong>Seasonality</strong> — Summer peak (June–July), winter trough (December–February).</li>
+        <li><strong>Moon phase</strong> — Small, conservative effect. Telemetry-only evidence; not a strong direct CPUE signal for Bass.</li>
+      </ul>
+
+      <h3>What Is NOT Used</h3>
+      <ul>
+        <li><strong>Barometric pressure</strong> — Two independent studies found no significant effect (p&gt;0.05).</li>
+        <li><strong>Cloud cover / light intensity</strong> — Not significant in qualifying study.</li>
+        <li><strong>Solunar window positions (overhead/underfoot)</strong> — No bass-specific evidence found after comprehensive search.</li>
+      </ul>
+
+      <!-- LIMITATIONS -->
+      <h2 id="limitations">Study Limitations</h2>
+      <ul>
+        <li><strong>Mixed methods:</strong> Some sources use electrofishing CPUE or telemetry, not recreational angling CPUE. Effect directions are supported, but exact magnitudes may differ for hook-and-line fishing.</li>
+        <li><strong>Moon phase:</strong> Evidence is telemetry-only (activity/depth shifts), and patterns are not consistent across the year. Included with very small weight.</li>
+        <li><strong>Water temperature:</strong> Estimated from air temperature history (7-day exponential decay model). Accuracy ~1–3°C. No free freshwater lake temperature API exists.</li>
+        <li><strong>Regional variation:</strong> Optimal temperatures and seasonal patterns may differ by latitude and lake type.</li>
+      </ul>
+      <p>Ratings are <strong>relative indicators</strong>, not guarantees. Do not assume they apply universally. We use the evidence-backed <em>direction</em> of effects and calibrate magnitude for a stable 1–5 scale.</p>
+
+      <!-- VARIABLES -->
+      <h2 id="variables">Variables</h2>
+      <p>Every variable is classified as <span class="tag-research">research-backed</span>, <span class="tag-calibrated">calibrated</span>, or <span class="tag-excluded">excluded</span>.</p>
+
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Status</th><th>Evidence</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dawn/dusk influence</td>
+            <td><span class="tag-research">Research-backed</span></td>
+            <td>BASS-S5 (p&lt;0.0001), BASS-S1</td>
+            <td>Primary driver. Electrofishing CPUE + telemetry confirm crepuscular peaks.</td>
+          </tr>
+          <tr>
+            <td>Wind speed</td>
+            <td><span class="tag-research">Research-backed</span></td>
+            <td>BASS-S6</td>
+            <td>Quadratic dome. Optimal ~12 km/h. AIC model selection supports inclusion.</td>
+          </tr>
+          <tr>
+            <td>Water temperature</td>
+            <td><span class="tag-research">Research-backed</span></td>
+            <td>BASS-S4 (p=0.0003), BASS-S7</td>
+            <td>Dome. Peak 20–24°C. Estimated from air temp (no lake temp API).</td>
+          </tr>
+          <tr>
+            <td>Seasonality</td>
+            <td><span class="tag-research">Research-backed</span></td>
+            <td>BASS-S5, BASS-S1</td>
+            <td>Summer 3–4× winter activity. Monthly multipliers are calibrated shape.</td>
+          </tr>
+          <tr>
+            <td>Moon phase</td>
+            <td><span class="tag-calibrated">Calibrated (direction-backed)</span></td>
+            <td>BASS-S2</td>
+            <td>Telemetry shows lunar-linked shifts, but NOT consistent year-round. Small weight.</td>
+          </tr>
+          <tr>
+            <td>Barometric pressure</td>
+            <td><span class="tag-excluded">Excluded (null result)</span></td>
+            <td>BASS-S3, BASS-S8</td>
+            <td>F=0.08/0.16 (BASS-S3); p&gt;0.05 (BASS-S8). Not significant in either study.</td>
+          </tr>
+          <tr>
+            <td>Cloud cover / light</td>
+            <td><span class="tag-excluded">Excluded (null result)</span></td>
+            <td>BASS-S3</td>
+            <td>F=1.10/0.65. Not significant.</td>
+          </tr>
+          <tr>
+            <td>Solunar windows</td>
+            <td><span class="tag-excluded">Excluded (no evidence)</span></td>
+            <td>N/A</td>
+            <td>No bass-specific open-access evidence found after 5 search sweeps.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Key Quotes (Verbatim)</h3>
+
+      <h4 id="var-dawn-dusk">Dawn/Dusk — BASS-S1 (Hlina et al. 2026)</h4>
+      <blockquote>"Largemouth bass acceleration peaked during dawn (0.521 ± 0.012 m s⁻²) and slowly decreased throughout the day with acceleration being the lowest at night (0.278 ± 0.002 m s⁻²)"<br><em>— p.7–8, Results</em></blockquote>
+      <p><a href="https://link.springer.com/content/pdf/10.1186/s40317-026-00444-6.pdf">PDF (open access)</a></p>
+
+      <h4 id="var-dawn-dusk-cpue">Dawn/Dusk — BASS-S5 (McInerny &amp; Cross 2000)</h4>
+      <blockquote>"Sample period F = 32.50, P &lt; 0.0001 (&lt; 120 mm TL); F = 55.91, P &lt; 0.0001 (200-299 mm TL); F = 20.13, P &lt; 0.0001 (≥ 300 mm TL)"<br><em>— Table 1, p.5</em></blockquote>
+      <p><a href="https://files.dnr.state.mn.us/publications/fisheries/investigational_reports/451.pdf">PDF (open access)</a></p>
+
+      <h4 id="var-wind">Wind — BASS-S6 (Maahs et al. 2022)</h4>
+      <blockquote>"We observed a quadratic effect of wind speed on bass weigh-in probability, with weigh-in probability being highest at wind speeds around 12 km/h"<br><em>— p.1522, Results</em></blockquote>
+      <p><a href="https://academic.oup.com/najfm/article-pdf/42/6/1513/61035884/nafm10840.pdf">PDF (open access)</a></p>
+
+      <h4 id="var-temperature">Water Temperature — BASS-S4 (Louisiana CPRA 2016)</h4>
+      <blockquote>"The model produces a dome-shape relationship between CPUE and temperature, with highest CPUE occurring between 20-24°C"<br><em>— p.7, Results</em></blockquote>
+      <blockquote>"Temperature Parameter Estimate = 0.3328, p = 0.0003; Temperature² = -0.00764, p = 0.0001"<br><em>— Table 2, p.7</em></blockquote>
+      <p><a href="https://coastal.la.gov/wp-content/uploads/2016/04/Attachment_C3-18.pdf">PDF (open access)</a></p>
+
+      <h4 id="var-moon">Moon Phase — BASS-S2 (Hanson et al. 2008)</h4>
+      <blockquote>"The percent of lunar face shining and whether the moon was waxing or waning were significant determinants of swimming activity and depth distribution during most of the lunar cycles evaluated, although these patterns were not consistent across the year."<br><em>— p.1, Abstract</em></blockquote>
+      <p><a href="https://www3.carleton.ca/fecpl/pdfs/FME_Hanson%20etal%202008.pdf">PDF (open access)</a></p>
+
+      <h4 id="var-baro">Barometric Pressure — Excluded (BASS-S3, BASS-S8)</h4>
+      <blockquote>"Analysis of variance of environmental parameters during good and poor runs" shows barometric pressure F = 0.08 (1973) and F = 0.16 (1974), both below F.05 critical values.<br><em>— BASS-S3, Table 4, p.132</em></blockquote>
+      <p><a href="https://digital.library.unt.edu/ark:/67531/metadc1449954/m2/1/high_res_d/7337514.pdf">BASS-S3 PDF</a> · <a href="https://thekeep.eiu.edu/cgi/viewcontent.cgi?article=4027&amp;context=theses">BASS-S8 PDF</a></p>
+
+      <!-- SOURCES -->
+      <h2 id="sources">Full Source List</h2>
+      <table>
+        <thead><tr><th>ID</th><th>Authors / Year</th><th>Title</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td>BASS-S1</td><td>Hlina et al. 2026</td><td>Seasonal effects on the acceleration of largemouth bass (Animal Biotelemetry)</td><td><a href="https://link.springer.com/content/pdf/10.1186/s40317-026-00444-6.pdf">PDF</a></td></tr>
+          <tr><td>BASS-S2</td><td>Hanson et al. 2008</td><td>Effects of lunar cycles on activity patterns and depth use (Fisheries Mgmt &amp; Ecology)</td><td><a href="https://www3.carleton.ca/fecpl/pdfs/FME_Hanson%20etal%202008.pdf">PDF</a></td></tr>
+          <tr><td>BASS-S3</td><td>Winter 1976</td><td>Movements and behavior of largemouth bass — UMN thesis</td><td><a href="https://digital.library.unt.edu/ark:/67531/metadc1449954/m2/1/high_res_d/7337514.pdf">PDF</a></td></tr>
+          <tr><td>BASS-S4</td><td>Louisiana CPRA 2016</td><td>Largemouth Bass HSI Model (2017 Coastal Master Plan)</td><td><a href="https://coastal.la.gov/wp-content/uploads/2016/04/Attachment_C3-18.pdf">PDF</a></td></tr>
+          <tr><td>BASS-S5</td><td>McInerny &amp; Cross 2000</td><td>Seasonal and diel variation in electrofishing CPUE (MN DNR Report 451)</td><td><a href="https://files.dnr.state.mn.us/publications/fisheries/investigational_reports/451.pdf">PDF</a></td></tr>
+          <tr><td>BASS-S6</td><td>Maahs et al. 2022</td><td>Effects of limits on largemouth bass tournament capture (N. Am. J. Fish. Mgmt)</td><td><a href="https://academic.oup.com/najfm/article-pdf/42/6/1513/61035884/nafm10840.pdf">PDF</a></td></tr>
+          <tr><td>BASS-S7</td><td>Sylvia et al. 2020</td><td>Bass behaviors and environmental conditions (Iowa State)</td><td><a href="https://dr.lib.iastate.edu/server/api/core/bitstreams/0bf6e7c2-a0b3-44dc-9aa0-6967449d29ff/content">PDF</a></td></tr>
+          <tr><td>BASS-S8</td><td>Burkett 1981</td><td>Hook-and-line vulnerability vs physicochemical parameters (EIU thesis)</td><td><a href="https://thekeep.eiu.edu/cgi/viewcontent.cgi?article=4027&amp;context=theses">PDF</a></td></tr>
+        </tbody>
+      </table>
+
+      <!-- CHANGELOG -->
+      <h2 id="changelog">Changelog</h2>
+      <ul>
+        <li><strong>2026-03-12:</strong> Updated wording to match the live Bass v2 app model: day baseline + intraday modifier, hourly curve, and best contiguous 2-hour headline summary.</li>
+        <li><strong>2026-03-08:</strong> Initial release. 8 open-access sources. Environmental day rating with hourly activity curve. Calibrated using 6-step evidence-anchored process.</li>
+      </ul>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 PrimeBite Fishing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="print-button" onclick="window.print()">🖨 Print / PDF</button>
+</body>
+</html>
