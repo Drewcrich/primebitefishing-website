@@ -3,245 +3,282 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeBite Fishing - Walleye Research & Methodology</title>
-  <meta name="description" content="PrimeBite Fishing Walleye methodology: research-backed drivers, calibrated choices, and plain-English transparency.">
-  <link rel="canonical" href="https://www.primebitefishing.com/walleye.html">
+  <title>PrimeBite Fishing — Walleye Research &amp; Methodology</title>
+  <meta name="description" content="PrimeBite Fishing — Walleye: research-backed drivers, source links, and plain-language methodology.">
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="canonical" href="https://www.primebitefishing.com/walleye">
+
   <style>
-    :root {
-      --bg: #0d1726;
-      --panel: #132238;
-      --panel-2: #182c45;
-      --text: #eef4ff;
-      --muted: #b8c6d9;
-      --accent: #6ad4ff;
-      --line: #28405d;
-      --good: #74d99f;
-      --warn: #f1cb63;
-      --bad: #f08c89;
-    }
-    * { box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #09111b 0%, var(--bg) 28%, #0f1d31 100%);
-      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.6;
+      color: #e0e0e0;
+      background: #1a1a1a;
     }
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 20px 48px;
+    .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    .header {
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #333;
     }
-    header {
-      padding: 40px 0 24px;
+    .nav { display: flex; justify-content: center; gap: 1.25rem; padding: 1rem 0; flex-wrap: wrap; }
+    .nav a { color: #e0e0e0; text-decoration: none; font-weight: 600; }
+    .nav a:hover { color: #4a9eff; }
+    .section { padding: 44px 0; }
+    h1 { font-size: 2rem; line-height: 1.2; color: #fff; margin-bottom: 10px; }
+    h2 { font-size: 1.6rem; color: #fff; margin: 28px 0 12px; }
+    h3 { font-size: 1.2rem; color: #4a9eff; margin: 20px 0 10px; }
+    p { margin-bottom: 12px; color: #b0b0b0; }
+    ul { margin: 8px 0 16px 20px; color: #b0b0b0; }
+    li { margin-bottom: 6px; }
+    a { color: #4a9eff; }
+    blockquote {
+      background: #2a2a2a;
+      border-left: 4px solid #4a9eff;
+      padding: 12px;
+      margin: 10px 0 16px;
+      border-radius: 6px;
+      color: #e0e0e0;
     }
-    h1, h2, h3 { margin: 0 0 12px; }
-    h1 { font-size: 2.1rem; }
-    h2 { font-size: 1.4rem; margin-top: 28px; }
-    h3 { font-size: 1.05rem; color: var(--accent); margin-top: 20px; }
-    p, li { color: var(--muted); }
-    .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
     .pill {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 12px;
+      display: inline-block;
       font-size: 12px;
-      color: var(--muted);
+      padding: 4px 10px;
+      border: 1px solid #333;
+      border-radius: 999px;
+      margin-right: 8px;
+      color: #b0b0b0;
+      background: #202020;
+    }
+    .toc {
+      margin: 14px 0 22px 0;
+      padding: 14px;
+      border: 1px solid #333;
+      border-radius: 10px;
       background: rgba(255,255,255,0.03);
+      color: #b0b0b0;
     }
-    .panel {
-      background: rgba(19, 34, 56, 0.92);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      margin-top: 18px;
+    .toc strong { color: #e0e0e0; }
+    .footer { border-top: 1px solid #333; padding: 20px 0; color: #666; text-align: center; }
+    .print-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #4a9eff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+      transition: all 0.2s;
+      z-index: 1000;
     }
-    .grid {
-      display: grid;
-      gap: 14px;
+    .print-button:hover {
+      background: #3a8eef;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(74, 158, 255, 0.4);
     }
-    @media (min-width: 820px) {
-      .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media print {
+      .header, .print-button { display: none; }
+      body { background: #fff; color: #000; }
+      .container { max-width: 100%; }
+      a { color: #000; text-decoration: underline; }
+      blockquote { page-break-inside: avoid; }
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-    th, td {
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      padding: 10px 8px;
-      vertical-align: top;
-    }
-    th { color: var(--text); }
-    a { color: var(--accent); }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      color: var(--text);
-    }
-    .note {
-      border-left: 4px solid var(--accent);
-      padding-left: 12px;
-      color: var(--muted);
-    }
-    .tag-good { color: var(--good); }
-    .tag-warn { color: var(--warn); }
-    .tag-bad { color: var(--bad); }
-    .changelog li { margin-bottom: 8px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="pills">
-        <span class="pill">PrimeBite Fishing</span>
-        <span class="pill">Walleye</span>
-        <span class="pill">Research &amp; Methodology</span>
-      </div>
-      <h1>Walleye Research &amp; Methodology</h1>
-      <p><em>Last updated: 2026-03-16</em></p>
-      <p class="note">
-        This page explains the live Walleye model in plain English. It shows what is research-backed,
-        what is calibrated, and what we intentionally do not use. It does not publish proprietary tuning details.
-      </p>
-    </header>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#transparency">Transparency</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#drivers">Drivers</a>
+        <a href="#definitions">Definitions</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="panel">
+  <main class="section">
+    <div class="container">
+      <span class="pill">PrimeBite Fishing</span>
+      <span class="pill">Walleye</span>
+      <span class="pill">Research &amp; Methodology</span>
+
+      <h1>Walleye — Research &amp; Methodology</h1>
+      <p><em>Last updated: 2026-03-18</em></p>
+
+      <p>
+        This page explains the live Walleye model in plain English. We show the drivers,
+        the open-access sources behind them, what is research-backed, and what is calibrated.
+        We do not publish the private numeric recipe.
+      </p>
+
+      <div class="toc">
+        <strong>On this page</strong>
+        <ul>
+          <li><a href="#methodology">How it works</a></li>
+          <li><a href="#drivers">Drivers we use</a></li>
+          <li><a href="#not-used">What we do not use</a></li>
+          <li><a href="#definitions">Key definitions and checks</a></li>
+        </ul>
+      </div>
+
       <h2 id="methodology">How it works</h2>
       <p>
-        PrimeBite Walleye uses <strong>Major windows only</strong>. Each Major window gets a 1.0 to 5.0 rating,
-        and the day rating is the average of those Major-window ratings.
+        PrimeBite scores <strong>Walleye Major windows only</strong> for the live Walleye model.
+        A Major window is when the moon is overhead or underfoot. Each Major window gets a
+        1.0-5.0 rating, and the day rating is the average of the two Major-window ratings.
+      </p>
+
+      <p>
+        The live Walleye model combines four things: moon position, moon phase, one
+        unified low-light driver, and a modest seasonal adjustment. That light driver
+        combines <strong>sunrise/sunset timing</strong> with <strong>real solar radiation</strong>
+        when the weather feed has it. If real solar radiation is not available, the solar
+        part of the light driver goes neutral instead of guessing.
+      </p>
+
+      <p>
+        A high rating means conditions look better relative to the Walleye benchmark set.
+        It does <strong>not</strong> guarantee a catch.
+      </p>
+
+      <h2 id="drivers">Drivers we use</h2>
+      <p>
+        <strong>Research-backed</strong> means the source supports the direction of the effect.
+        <strong>Calibrated</strong> means PrimeBite chose the exact curve, cap, or weighting to
+        keep ratings stable and balanced.
+      </p>
+
+      <h3 id="var-moon-position">1. Moon position (Majors only)</h3>
+      <p><strong>Research-backed:</strong> trips were more successful when the moon was overhead or underfoot.</p>
+      <p><strong>Calibrated:</strong> the exact way that effect is turned into a 1-5 score.</p>
+      <p><strong>Source:</strong> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257882" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PLOS ONE</a></p>
+      <blockquote>
+        “Anglers were observed to be about 10–12% more likely to be successful when the moon was overhead or underfoot…”
+        <br><br>
+        <em>(PDF p.13)</em>
+      </blockquote>
+
+      <h3 id="var-moon-phase">2. Moon phase</h3>
+      <p><strong>Research-backed:</strong> gibbous phases were best in the study and quarter phases were worst.</p>
+      <p><strong>Calibrated:</strong> the exact curve shape and weight.</p>
+      <p><strong>Source:</strong> <a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF</a></p>
+      <blockquote>
+        “The odds of a successful trip were highest during the gibbous phases… and lowest during the quarter phases…”
+        <br><br>
+        <em>(PDF p.13)</em>
+      </blockquote>
+
+      <h3 id="var-light">3. Unified light driver</h3>
+      <p>
+        <strong>Research-backed:</strong> Walleye success improves in lower light, especially around dawn,
+        dusk, and lower solar radiation.
       </p>
       <p>
-        The live Walleye score uses four drivers:
+        <strong>Calibrated:</strong> the way PrimeBite blends sunrise/sunset timing with solar radiation into
+        one light score.
       </p>
+      <p>
+        <strong>Implementation note:</strong> the live model uses real Open-Meteo solar-radiation data when
+        available instead of a cloud-cover stand-in.
+      </p>
+      <p><strong>Sources:</strong></p>
       <ul>
-        <li>Major-window base</li>
-        <li>Moon phase ordering</li>
-        <li>Dawn/dusk light timing</li>
-        <li>Conservative seasonality</li>
+        <li><a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF</a></li>
+        <li><a href="https://minds.wisconsin.edu/handle/1793/85172" target="_blank" rel="noopener noreferrer">Vasquez 2024 — UWSP thesis</a></li>
       </ul>
+      <blockquote>
+        “…The predicted odds of a successful trip was highest at dusk … followed by dawn … and then day …”
+        <br><br>
+        <em>(Shaw 2021 PDF p.8)</em>
+      </blockquote>
+      <blockquote>
+        “Mean daily solar radiation had a negative effect on walleye trip success…”
+        <br><br>
+        <em>(Shaw 2021 PDF p.11)</em>
+      </blockquote>
+      <blockquote>
+        “Walleye … trip success and CPUE … generally increased as light conditions decreased…”
+        <br><br>
+        <em>(Shaw 2021 PDF p.25)</em>
+      </blockquote>
+      <blockquote>
+        “Observations 30 mins before and after sunrise were classified as dawn and observations 30 mins before and after sunset were classified as dusk.”
+        <br><br>
+        <em>(Vasquez 2024 printed p.30)</em>
+      </blockquote>
+
+      <h3 id="var-season">4. Seasonality</h3>
       <p>
-        The live scale is benchmark-anchored so <strong>1.0 means among the worst realistic Walleye conditions</strong>,
-        <strong>2.5 means about average</strong>, and <strong>5.0 means among the best realistic conditions</strong>.
+        <strong>Research-backed:</strong> open-access sources support a spring-heavy Walleye pattern, plus
+        weaker seasonal movement across the rest of the year.
       </p>
-    </section>
-
-    <section class="panel">
-      <h2 id="variables">Research-backed vs calibrated</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Driver</th>
-            <th>Status</th>
-            <th>Live role</th>
-            <th>Why</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Major-window base</td>
-            <td><span class="tag-good">Research-backed direction + calibrated magnitude</span></td>
-            <td>Core lift from moon overhead / underfoot</td>
-            <td>Underfoot stays stronger than overhead, matching the Shaw ordering.</td>
-          </tr>
-          <tr>
-            <td>Moon phase</td>
-            <td><span class="tag-good">Research-backed ordering + calibrated interpolation</span></td>
-            <td>Raises gibbous windows, lowers quarter-phase windows</td>
-            <td>Waxing and waning gibbous stay strongest. Quarter phases stay weakest.</td>
-          </tr>
-          <tr>
-            <td>Dawn/dusk light window</td>
-            <td><span class="tag-good">Research-backed direction + calibrated fade</span></td>
-            <td>Direct light lift near sunrise and sunset</td>
-            <td>Dusk is strongest, dawn is next, daytime is weakest.</td>
-          </tr>
-          <tr>
-            <td>Seasonality</td>
-            <td><span class="tag-warn">Research-backed direction + calibrated monthly values</span></td>
-            <td>Small seasonal multiplier</td>
-            <td>Spring gets the highest boost, summer dips slightly, and fall gets a small rebound.</td>
-          </tr>
-          <tr>
-            <td>Wind speed / precipitation / pressure / cloud cover</td>
-            <td><span class="tag-bad">Excluded</span></td>
-            <td>Not used in the live Walleye score</td>
-            <td>They did not survive the full recalibration evidence review.</td>
-          </tr>
-          <tr>
-            <td>Separate overlap bonus</td>
-            <td><span class="tag-bad">Excluded</span></td>
-            <td>Not used in the live Walleye score</td>
-            <td>The direct dawn/dusk light driver replaced the older overlap story.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="grid two">
-      <div class="panel">
-        <h2>Evidence anchors</h2>
-        <h3>Moon overhead / underfoot</h3>
-        <p>
-          Shaw et al. 2021 reported that anglers were about 10-12% more likely to be successful
-          when the moon was overhead or underfoot.
-        </p>
-        <h3>Moon phase</h3>
-        <p>
-          The same paper reported the highest odds during waxing and waning gibbous phases and the lowest odds during quarter phases.
-        </p>
-        <h3>Dawn / dusk light</h3>
-        <p>
-          Shaw reported dusk strongest, dawn next, and day weakest. Vasquez 2024 provided the
-          practical sunrise/sunset +/- 30 minute definition used for the live light window.
-        </p>
-      </div>
-
-      <div class="panel">
-        <h2>What the scale means</h2>
-        <ul>
-          <li><strong>1.0</strong> = among the worst realistic Walleye conditions</li>
-          <li><strong>2.5</strong> = about average</li>
-          <li><strong>5.0</strong> = among the best realistic Walleye conditions</li>
-        </ul>
-        <p>
-          In the full 2026 benchmark sweep, the live Walleye model produced:
-        </p>
-        <ul>
-          <li>median = <strong>2.50</strong></li>
-          <li>tail &lt;= 1.1 = <strong>1.91%</strong></li>
-          <li>tail &gt;= 4.9 = <strong>1.25%</strong></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>Included sources</h2>
+      <p><strong>Calibrated:</strong> the exact month-by-month curve and cap.</p>
+      <p><strong>Sources:</strong></p>
       <ul>
-        <li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257882" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 - PLOS ONE</a></li>
-        <li><a href="https://minds.wisconsin.edu/handle/1793/85172" target="_blank" rel="noopener noreferrer">Vasquez 2024 - UWSP thesis</a></li>
-        <li><a href="https://www.researchgate.net/profile/Michael-Hansen-44/publication/233201382_Temporal_Profiles_of_Walleye_Angling_Effort_Harvest_Rate_and_Harvest_in_Northern_Wisconsin_Lakes/links/546389d30cf2cb7e9da989d6/Temporal-Profiles-of-Walleye-Angling-Effort-Harvest-Rate-and-Harvest-in-Northern-Wisconsin-Lakes.pdf" target="_blank" rel="noopener noreferrer">Deroba et al. 2007</a></li>
-        <li><a href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1063&amp;context=ncfwrustaff" target="_blank" rel="noopener noreferrer">Pope &amp; Willis 1996</a></li>
+        <li><a href="https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0257882&amp;type=printable" target="_blank" rel="noopener noreferrer">Shaw et al. 2021 — PDF</a></li>
+        <li><a href="https://www.canr.msu.edu/qfc/publications/pdf-publications/2007-publications/Temporal%20profiles%20of%20walleye%20angling%20effort%2C%20harvest%20rate%2C%20and%20harvest_Deroba.pdf" target="_blank" rel="noopener noreferrer">Deroba et al. 2007 — PDF</a></li>
+        <li><a href="https://digitalcommons.unl.edu/ncfwrustaff/64/" target="_blank" rel="noopener noreferrer">Pope &amp; Willis 1996 — Digital Commons</a></li>
       </ul>
-      <p>
-        For the internal full trace, see the app repo docs:
-        <code>WALLEYE_EVIDENCE_DRIVER_MATRIX.md</code>,
-        <code>WALLEYE_VARIABLES_FACTCHECK.md</code>,
-        and <code>WALLEYE_CALCULATIONS.md</code>.
-      </p>
-    </section>
+      <blockquote>
+        “During spawning activities, individuals congregate in the littoral zone of the lake and fish may be more active than at other times of the year… making them more vulnerable to anglers.”
+        <br><br>
+        <em>(Shaw 2021 PDF p.26)</em>
+      </blockquote>
+      <blockquote>
+        “The average harvest rate during the angling season differed between day types and peaked in May on weekdays but also December on weekends.”
+        <br><br>
+        <em>(Deroba 2007 printed p.717)</em>
+      </blockquote>
+      <blockquote>
+        “For many freshwater fishes and common sampling gears, CPUE, size and age structure, and condition are highest in the spring and fall…”
+        <br><br>
+        <em>(Pope &amp; Willis 1996 printed p.57)</em>
+      </blockquote>
 
-    <section class="panel">
-      <h2>Changelog</h2>
-      <ul class="changelog">
-        <li><strong>2026-03-16:</strong> Full Walleye recalibration landed. The live model now uses Major base + moon phase + dawn/dusk light + seasonality. Old cloud and separate overlap language was removed.</li>
-        <li><strong>2026-03-16:</strong> The Walleye scale was re-anchored to the new benchmark outputs so 1.0, 2.5, and 5.0 match the current rating standard.</li>
-        <li><strong>2026-03-16:</strong> Public wording was rewritten to match the new checkpoint and the live app explanations.</li>
+      <h2 id="not-used">What we do not use</h2>
+      <ul>
+        <li><strong>Minor windows:</strong> not used for live Walleye scoring.</li>
+        <li><strong>Overlap as a separate driver:</strong> removed from Walleye v2.</li>
+        <li><strong>Cloud cover as a solar proxy:</strong> removed now that real solar-radiation data is wired in.</li>
+        <li><strong>Wind speed, precipitation, and pressure:</strong> not used in the live Walleye score.</li>
       </ul>
-    </section>
-  </div>
+
+      <h2 id="definitions">Key definitions and checks</h2>
+      <h3>Moon phase position vs moon illumination</h3>
+      <p>
+        The phase model uses <strong>phase position</strong>, not just percent illuminated. That matters because
+        first quarter and last quarter can look similar in brightness but are different phases.
+      </p>
+      <p><strong>Source:</strong> <a href="https://classic.yarnpkg.com/en/package/suncalc" target="_blank" rel="noopener noreferrer">SunCalc docs</a></p>
+      <blockquote>
+        “Moon phase value should be interpreted like this: … 0 | New Moon … 0.25 | First Quarter … 0.5 | Full Moon … 0.75 | Last Quarter …”
+      </blockquote>
+
+      <h3>What PrimeBite is and is not claiming</h3>
+      <ul>
+        <li>We are claiming these drivers have evidence behind them.</li>
+        <li>We are not claiming any rating guarantees a catch.</li>
+        <li>We are not publishing the private numeric tuning used to turn those drivers into a stable 1-5 score.</li>
+      </ul>
+
+      <div class="footer">
+        PrimeBite Fishing — Transparency pages are living documents. If you spot an error, please report it.
+      </div>
+    </div>
+  </main>
+
+  <button class="print-button" onclick="window.print()" aria-label="Print this page">
+    Print / Save PDF
+  </button>
 </body>
 </html>
